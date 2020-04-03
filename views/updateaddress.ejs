@@ -1,0 +1,59 @@
+<%- include('./partials/_dashboard_nav') %>
+
+
+
+<main class="ps-main">
+    <div class="ps-contact ps-section pb-80">
+      <!--<div id="contact-map" data-address="New York, NY" data-title="Sky Store!" data-zoom="17"></div> -->
+      <div class="ps-container" style="margin: 0 auto;">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="ps-section__title" data-mask="Update">- Update Address</h2>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <div class="ps-section__header mb-50">
+            
+              <form class="ps-contact__form" action="/updatepass" method="post">
+                <div class="row">   
+                      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group">
+                          <label>Enter previous password <sub>*</sub></label>
+                          <input class="form-control" type="password" placeholder="" name="password1" id="password1">
+                        </div>
+                      </div> -->
+                      <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group">
+                          <label> New Address <sub>*</sub></label>
+                          <input class="form-control" type="password" placeholder="" name="password2" id="password2">
+                        </div>
+                      </div> -->
+                      <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group mb-25">
+                          <label>New Address <sub>*</sub></label>
+                          <textarea class="form-control" rows="6"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group mb-25">
+                          <label>New Postal Pin <sub>*</sub></label>
+                          <input class="form-control" type="text" placeholder="" name="pin" id="pin">
+                        </div>
+                      </div>
+                        <div class="form-group">
+                          <button class="ps-btn"> Change Address <i class="ps-icon-next"></i></button>
+                        </div>
+                    </div>
+              </form>
+              <!-- <p> Not Registered yet? <a href="/register"> Register here </a> </p> -->
+            </div>
+        </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+<%- include('./partials/_footer') %>

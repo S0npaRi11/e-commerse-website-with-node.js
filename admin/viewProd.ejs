@@ -1,0 +1,28 @@
+<%- include('_navbar') %>
+
+<div class="ps-contact ps-section pb-80">
+    <!--<div id="contact-map" data-address="New York, NY" data-title="Sky Store!" data-zoom="17"></div> -->
+    <div class="ps-container" style="margin: 0 auto;">
+
+<form class="ps-contact__form" action="/addProducts" method="get">
+
+    <div class="form-group">
+        <button class="ps-btn">Add Product<i class="ps-icon-next"></i></button>
+    </div>
+
+</form>
+
+<ul>
+    <% inventories.forEach(function (inventory) { %>
+        <a href="<%= inventory.id %>"> <li >  <%= inventory.class %> <!-- note you defined the field as Name not name -->
+          <%= inventory.brnad %> 
+          <%= inventory.name %> 
+          <%= inventory.price %> 
+        </a>
+        <button class="btn btn-danger" href="/<%= inventory.id %>/delete"> delete </button>
+        </li>
+      <% }) %>
+    </ul>
+
+</div>
+</div>

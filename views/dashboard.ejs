@@ -1,0 +1,51 @@
+<%- include('./partials/_dashboard_nav') %>
+<main class="ps-main">
+    <div class="ps-container">
+        <div class="ps-section__content">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <h2 class="ps-section__title" data-mask="dashboard">- Dashboard</h2>
+                </div>
+                <br><br>
+                <div class="col-md-6">
+                    <div class="ps-contact__block" data-mh="contact-block">
+                        <header>
+                        <h3> <%= name %> </h3>
+                        </header>
+                        <footer>
+                        <p><i class="fa fa-envelope-o"></i> user email </p>
+                        <p><i class="fa fa-phone"></i> user phone number </p>
+                        <p><i class="fa fa-map-marker"></i> user address, postal pin  &nbsp;&nbsp;&nbsp;&nbsp; <a href="/updateaddress"> update </a></p> 
+                        <p> <i class="fa fa-key" aria-hidden="true"></i><a href="/updatepass"> update password </a> </p>
+                        </footer>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="ps-contact__block" style="height: auto ;">
+                                <header>
+                                <h3><a href="/wishlist"> Wishlist </a></h3>
+                                </header>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="ps-contact__block" style="height: auto;">
+                                <header>
+                                <h3><a href="/orders"> Previous Perchase </a></h3>
+                                </header>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="/logout?_method=DELETE" method="POST"> 
+                    <button type="submit" class="btn btn-danger"> LogOut </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include ('./partials/_footer') %>
