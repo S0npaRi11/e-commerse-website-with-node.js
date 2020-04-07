@@ -17,7 +17,8 @@ function initialize(passport,getUserByEmail, getUserById){
         console.log('entered authenticate user function');
         users.findOne({email: email}) 
             .then(user => {
-                console.log(user);
+                // req.session.user = user;
+                // console.log(req.session.user);
                 if(!user){
                     console.log('no user with that email');
                     return done(null,false,{message: 'No user with that email'});
@@ -43,6 +44,8 @@ function initialize(passport,getUserByEmail, getUserById){
     passport.serializeUser((user, done) => done(null,user.id));
 
     passport.deserializeUser((id, done) => done(null, getUserById(id)));
+
+
 }
 
 module.exports = initialize;

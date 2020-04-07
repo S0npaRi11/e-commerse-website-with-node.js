@@ -3,7 +3,6 @@ if(process.env.NODE_ENV !== 'production'){
 }
 
 const express = require('express');
-//const bcrypt = require('bcrypt');
 const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
@@ -13,54 +12,24 @@ const initializePassport = require('./passport-config');
 const methodOverride = require('method-override');
 
 const app = express();
-// app.use(passport.initialize());
-
-
-//all middleware here
-
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-}));
-
+app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 
-
+app.use(function(req, res, next) {
+    res.locals.user = req.session.user;
+    next();
+});
 
 
 const router = express.Router();
-//connect to the database
-
-
-// initalize passport
-
-
-
 
 router.get('/login', (req,res) => {
     res.render('../views/login.ejs');
 });
 
 
-// router.post('/login',passport.authenticate('local',{
-//     successRedirect: '/',
-//     failureRedirect: '/login',
-//     //failureFlash: true,
-// }));
-
-
 router.post('/login', (req,res) => {
-
-    // mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true, useUnifiedTopology: true});
-
-    // const db = mongoose.connection
-
-    // db.on('error', error => console.error(error));
-    // db.once('open', () => console.log('connected to the user database'));
-
-
 
     initializePassport(
         passport,
@@ -87,11 +56,42 @@ router.post('/login', (req,res) => {
         failureRedirect: '/login'
     })(req,res);
 
-    req.session.name = req.body.name;
+
+    // console.log("ltrjvyiru "+req.body.email);
+
+    req.session.email = req.body.email;
 });
 
 
-router.get('/dashboard', (req, res) => res.render('../views/dashboard.ejs',{ name: req.session.name, email: req.session.email, pno: req.session.pno, address: req.session.address }));
+router.get('/dashboard', (req, res) => {
+    // console.log(req.user);
+    // console.log(req.body);
+    console.log(req.session.email);
+    users.findOne({email: req.session.email}, (error,user) => {
+        if(error){
+            console.log(error);
+        }else{
+            console.log(user);
+            // req.session.id = user.id;
+            // req.session.fname = user.fname;
+            // req.session.phone = user.pno;
+            // req.session.pin = user.pin;
+            // req.session.address = user.address;
+            // req.session.age = user.age;
+            // req.session.pass = user.password;
+            req.session.user = user;
+
+            res.locals.user = req.session.user;
+            console.log(req.session);
+            console.log(res.locals.user.fname);
+            res.render('../views/dashboard.ejs',{name: res.locals.user.fname, email: res.locals.user.email,pno: res.locals.user.pno, address: res.locals.user.address, pin: res.locals.user.pin});
+        }
+    });
+    //res.locals.user = req.session.user;
+    // let val = res.locals.user;
+    //console.log("retrytukjhgrfe" + req.session.user);
+    
+});
 
 router.get('/wishlist', (req, res) => res.render('../views/wishlist.ejs'));
 
@@ -101,8 +101,5 @@ app.delete('/logout',(req,res) => {
     req.logOut();
     res.redirect('/login');
 });
-
-
-module.exports = router;
 
 module.exports = router;

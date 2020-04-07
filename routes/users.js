@@ -8,12 +8,23 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const users = require('../models/User');
 const flash = require('express-flash');
+const session = require('express-session');
+const passport = require('passport');
 
 const app = express();
 
 const router = express.Router();
 
 //use the express-flash middleware
+
+
+// app.use(session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+// }));
+
+app.use(passport.session());
 
 app.use(flash());
 
@@ -56,6 +67,8 @@ router.post('/register', async (req,res) => {
                
             }else{
                // console.log('saved successfully');
+            //    req.session.user = newUser;
+            //    console.log("session user" + req.session.user);
                 res.render('../views/login.ejs');
                 // db.close();
             }

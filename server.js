@@ -7,16 +7,11 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const mongoStore = require('connect-mongo')(session);
 
 
 const app = express();
-
-//all app.use() here
-app.use(expressLayouts);
-app.use(express.urlencoded({extended: true}));
-app.set('view engine','ejs');
-app.use(express.static(__dirname + '/public'));
-app.use(passport.initialize());
 
 // connecting to the server
 
@@ -26,6 +21,27 @@ mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true, useUnifiedTopo
 
  db.on('error', error => console.error(error));
  db.once('open', () => console.log('connected to the user database'));
+
+
+//all app.use() here
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: new mongoStore({mongooseConnection: db}),
+}));
+app.use(expressLayouts);
+app.use(express.urlencoded({extended: true}));
+app.set('view engine','ejs');
+app.use(express.static(__dirname + '/public'));
+app.use(passport.initialize());
+
+app.use(function(req, res, next) {
+    res.locals.user = req.session.user;
+    next();
+});
+
 
 
 //all routes here
