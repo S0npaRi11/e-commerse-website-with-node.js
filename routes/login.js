@@ -83,7 +83,7 @@ router.get('/dashboard', (req, res) => {
 
             res.locals.user = req.session.user;
             console.log(req.session);
-            console.log(res.locals.user.fname);
+           // console.log(res.locals.user.fname);
             res.render('../views/dashboard.ejs',{name: res.locals.user.fname, email: res.locals.user.email,pno: res.locals.user.pno, address: res.locals.user.address, pin: res.locals.user.pin});
         }
     });

@@ -22,22 +22,23 @@ db.once('open', () => console.log('connected to the user database'));
 
 
 router.get('/', (req, res) => {
-    inventory.find({}, (err,result) => {
+   const a = inventory.find({}, (err,result) => {
         if(err) console.err(err);
-        else res.render('../admin/viewProd.ejs', {class: req.class, brand: req.brand, name: req.name,price: req.price,id: req.id,inventories: result});
+        else {
+            res.render('../admin/viewProd.ejs', {class: req.class, brand: req.brand, name: req.name,price: req.price,id: req.id,inventories: result});
+        }// console.log(a.req.class);
     });
-   
+ 
 });
 
 
 
-// router.get('/:id', (req, res) => {
-//     inventory.findById({id: req.params.id}, (err,result) => {
-//         if(err) console.log(err);
-//         else res.render('../admin/updateProd.ejs', {class: req.class, brand: req.brand, name: req.name,price: req.price,id: req.id,description: req.description,stock: req.stock, product: result});
-//     });
-   
-// });
+router.get('/:id', (req, res) => {
+    inventory.findById({_id: req.params.id}, (err,result) => {
+        if(err) console.log(err);
+        else res.render('../admin/updateProd.ejs', {class: req.class, brand: req.brand, name: req.name,price: req.price,id: req.id,description: req.description,stock: req.stock, product: result});
+    });
+});
 
 // router.get('/list',(req,res) => {
 //      inventory.find({}, (err,result) => {
