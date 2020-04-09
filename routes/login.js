@@ -93,7 +93,16 @@ router.get('/dashboard', (req, res) => {
     
 });
 
-router.get('/wishlist', (req, res) => res.render('../views/wishlist.ejs'));
+router.get('/wishlist', (req, res) => {
+    users.findOne({email: req.session.email}, (err,user) => {
+       if(err) console.log(err);
+       else{
+           console.log(user.wishlist);
+        res.render('../views/wishlist.ejs',{wishlist: req.wishlist, user: user});
+       }
+    })
+   
+});
 
 router.get('/orders', (req, res) => res.render('../views/previous.ejs'));
 

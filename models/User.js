@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema({
     pin:{
         type: String,
         required: true
+    },
+    wishlist:{
+        type: Array,
+        default: [],
     }
 });
 
