@@ -104,11 +104,27 @@ router.get('/wishlist', (req, res) => {
    
 });
 
-router.get('/orders', (req, res) => res.render('../views/previous.ejs'));
+router.get('/orders', (req, res) => {
+    users.findOne({email: req.session.email}, (err,user) => {
+       if(err) console.log(err);
+       else{
+           console.log(user.orders);
+        res.render('../views/previous.ejs',{orders: req.orders, user: user});
+       }
+    })
+   
+});
 
-app.delete('/logout',(req,res) => {
+router.post('/logout',(req,res) => {
     req.logOut();
-    res.redirect('/login');
+    req.session.destroy((err) =>{
+        if(err) console.log(err);
+        else{
+            console.log("logout complete");
+            res.redirect('/login');
+        }
+    });
+   
 });
 
 module.exports = router;

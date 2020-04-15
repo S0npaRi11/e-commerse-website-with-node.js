@@ -25,13 +25,30 @@ const router = express.Router()
 
 
 
-router.get('/store/:id', (req,res) => {
+router.get('/:id', (req,res) => {
     inventory.findById({_id: req.params.id}, (err,result) => {
         if(err) console.log(err);
         else{
-            res.render('../views/prodDetails.ejs', {class: req.class, brand: req.brand, name: req.name,price: req.price,id: req.id,inventories: result});
+            inventory.find({class: result.class}, (err,recommended) => {
+                if(err) console.log(err)
+                else{
+                    console.log(recommended);
+                    res.render('../views/prodDetails.ejs', {class: req.class, brand: req.brand, name: req.name,price: req.price,id: req.id,inventories: result, product: recommended});
+                }
+            });
+            
         }
     });
+
+    // inventories.find({class: 'mobile'}, (err,result) => {
+    //     if (err) console.log(err);
+    //     else{
+    //         const a = result;
+    //         // console.log((a).sort().reverse());
+    //         const b = a.sort().reverse();
+    //         res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, product: a, proRecent: b});
+    //     }
+    // });
 });
 
 

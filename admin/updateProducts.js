@@ -6,6 +6,7 @@ if(process.env.NODE_ENV !== 'production'){
 const express = require('express');
 const mongoose = require('mongoose');
 const products = require('../models/Inventory');
+const multer = require('multer');
 
 const router = express.Router();
 
@@ -26,13 +27,15 @@ router.get('/addProducts', (req, res) => {
 });
 
 router.post('/updateProducts', (req,res) => {
-    products.findOneAndUpdate({ "_id": req.body.id }, { "$set": { "class": req.body.class, "brand": req.body.brand, "name": req.body.name, "price": req.body.price, "stock": req.body.stock}}).exec(function(err){
-        if(err) {
-            console.log(err);
-        } else {
-            res.redirect('/')
-        }
-     });
+    
+
+    // products.findOneAndUpdate({ "_id": req.body.id }, { "$set": { "class": req.body.class, "brand": req.body.brand, "name": req.body.name, "price": req.body.price, "stock": req.body.stock}}).exec(function(err){
+    //     if(err) {
+    //         console.log(err);
+    //     } else {
+    //         res.redirect('/')
+    //     }
+    //  });
 });
 
 module.exports = router;
