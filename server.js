@@ -45,6 +45,7 @@ app.use(function(req, res, next) {
 
 
 //all routes here
+
 app.use('/', require('./routes/index.js'));
 app.use('/about', require('./routes/about.js'));
 app.use('/contact', require('./routes/contact.js'));
@@ -55,5 +56,9 @@ app.use('/', require('./routes/search.js'));
 app.use('/', require('./routes/prodDetails.js'));
 // app.use('/', require('./routes/dashboard.js'));
 app.use('/', require('./routes/update.js'));
+
+// app.get('*',(req,res) => {
+//     res.status(404).render('../views/404.ejs');
+// });
 
 app.listen(process.env.PORT || 3000);

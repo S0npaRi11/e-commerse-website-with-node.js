@@ -29,6 +29,10 @@ const inventorySchema = new mongoose.Schema({
         type : Date,
         default: Date.now
     },
+    image:{
+        type : String,
+        default: ' '
+    }
 });
 
 module.exports = mongoose.model('inventory', inventorySchema);

@@ -15,7 +15,7 @@
             <tbody>
                <% user.wishlist.forEach((item) => {  %>
                 <tr>
-                    <td><a class="ps-product__preview" href="product-detail.html"><img class="mr-15" src="images/product/cart-preview/1.jpg" alt=""><%= item.name %></a></td>
+                    <td><a class="ps-product__preview" href="product-detail.html"><img class="mr-15" src="<%= item.image %>" alt=" <%= item.image %> "><%= item.name %></a></td>
                     <td> &#8377; <%= item.price %></td>
                     <td><a class="ps-product-link" href="/store/<%= item.product_id %>">View Product</a></td>
                     <td>

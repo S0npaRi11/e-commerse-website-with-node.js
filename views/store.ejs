@@ -22,7 +22,7 @@
           <a href="/<%= inventory.id %>">  <div class="ps-product__column">
                 <div class="ps-shoe mb-30">
                     <div class="ps-shoe__thumbnail">
-                        <a class="ps-shoe__favorite" href="/addtowishlist/<%= inventory.id %>"><i class="ps-icon-heart"></i></a><img src="images/shoe/1.jpg" alt=""><a class="ps-shoe__overlay" href="/<%= inventory.id %>"></a>
+                        <a class="ps-shoe__favorite" href="/addtowishlist/<%= inventory.id %>"><i class="ps-icon-heart"></i></a><img src="<%= inventory.image %>" alt="<%= inventory.image %> "><a class="ps-shoe__overlay" href="/<%= inventory.id %>"></a>
                     </div>
                      <div class="ps-shoe__content">
                         <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">    <%= inventory.name %>  </a>
