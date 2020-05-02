@@ -84,7 +84,7 @@ router.get('/dashboard', (req, res) => {
             res.locals.user = req.session.user;
             console.log(req.session);
            // console.log(res.locals.user.fname);
-            res.render('../views/dashboard.ejs',{name: res.locals.user.fname, email: res.locals.user.email,pno: res.locals.user.pno, address: res.locals.user.address, pin: res.locals.user.pin});
+            res.render('../views/dashboard.ejs',{name: req.session.fname, email: req.session.email,pno: req.session.pno, address: req.session.address, pin: req.session.pin});
         }
     });
     //res.locals.user = req.session.user;
@@ -103,6 +103,33 @@ router.get('/wishlist', (req, res) => {
     })
    
 });
+
+// router.get('/wishlist/delete/:id', (req, res) => {
+//     // users.findOne({email: req.session.email}, (err,user) => {
+//     //    if(err) console.log(err);
+//     //    else{
+//     //        console.log(user.wishlist);
+//     //     res.render('../views/wishlist.ejs',{wishlist: req.wishlist, user: user});
+//     //    }
+//     // })
+    
+
+// //     users.findByIdAndDelete({_id: req.params.id },function(err) {
+// //         if (err) return console.log(err);
+// //         else{
+// //             res.redirect('/');
+// //             console.log("deleted one record")
+// //         }
+// //    });
+
+//     users.findOneAndUpdate({_id: req.session.id},{'$pull':{'wishlist':{}}}, (err) => {
+//         if(err) console.log(err);
+//         else{
+//             user.update()
+//         }
+//     });
+   
+// });
 
 router.get('/orders', (req, res) => {
     users.findOne({email: req.session.email}, (err,user) => {

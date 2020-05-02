@@ -51,13 +51,13 @@ router.post('/register', async (req,res) => {
     try{
         const hashedPassword = await bcrypt.hash(req.body.password1, 10);
         const newUser = new users({
-            fname: req.body.fname,
-            age: req.body.age,
-            email: req.body.email,
-            pno: req.body.pno,
-            password: hashedPassword,
-            pin: req.body.pin,
-            address: req.body.address,
+            fname: req.body.fname.trim(),
+            age: req.body.age.trim(),
+            email: req.body.email.trim(),
+            pno: req.body.pno.trim(),
+            password: hashedPassword.trim(),
+            pin: req.body.pin.trim(),
+            address: req.body.address.trim(),
         });
 
         newUser.save().then( (err) =>{

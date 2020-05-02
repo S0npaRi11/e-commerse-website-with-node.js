@@ -9,30 +9,18 @@ const products = require('../models/Inventory');
 
 const router = express.Router();
 
-//connect to the database
-
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology:true});
-
-const db = mongoose.connection;
-
-db.on('error', error => console.log(error));
-db.once('open', () => console.log('connected to the user database'));
-
-
-
-
 router.get('/addProducts', (req, res) => {
     res.render('../admin/addProdForm.ejs');
 });
 
 router.post('/addProducts', (req,res) => {
     const newProduct = new products({
-        class: req.body.class,
-        brand: req.body.brand,
-        name: req.body.name,
-        description: req.body.description,
+        class: req.body.class.trim(),
+        brand: req.body.brand.trim(),
+        name: req.body.name.trim(),
+        description: req.body.description.trim(),
         price: req.body.price,
-        stock: req.body.stock
+        stock: req.body.stock.trim()
     });
 
     newProduct.save().then( (err) =>{

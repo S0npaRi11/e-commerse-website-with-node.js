@@ -1,31 +1,32 @@
-// if(process.env.NODE_ENV !== 'production'){
-//     require('dotenv').config();
-// }
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config();
+}
 
 
 
-// const express = require('express');
-// const mongoose = require('mongoose');
-// const inventory = require('../models/Inventory');
+const express = require('express');
+const mongoose = require('mongoose');
+const inventory = require('../models/Inventory');
 
 
 
-// const router = express.Router();
+const router = express.Router();
 
-// mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology:true});
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology:true});
 
-// const db = mongoose.connection;
+const db = mongoose.connection;
 
-// db.on('error', error => console.log(error));
-// db.once('open', () => console.log('connected to the user database'));
+db.on('error', error => console.log(error));
+db.once('open', () => console.log('connected to the user database'));
 
-// router.get('/:id/delete', (req,res) => {
-//     inventory.findByIdAndDelete({_id: req.params.id },function(err) {
-//         if (err) return console.log(err);
-//         else{
-//             res.redirect('/');
-//              console.log("deleted one record")}
-//    })
-// });
+router.get('/delete/:id', (req,res) => {
+    inventory.findByIdAndDelete({_id: req.params.id },function(err) {
+        if (err) return console.log(err);
+        else{
+            res.redirect('/');
+            console.log("deleted one record")
+        }
+   });
+});
 
-// module.exports = router;
+module.exports = router;

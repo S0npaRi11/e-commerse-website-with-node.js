@@ -11,18 +11,29 @@
     </div>
 
 </form>
+    <div class="ps-cart-listing ps-table--whishlist">
+        <table class="table ps-cart__table">
+        <thead>
+            <tr>
+            <th> Class - Name - Brand</th>
+            <th>Price</th>
+            <th>  </th>
+            <th>  </th>
+            </tr>
+        </thead>
+        <tbody>
+           <% inventories.forEach((inventory) => {  %>
+            <tr>
+                <td><%= inventory.class %> - <%= inventory.name %> - <%= inventory.brand %></td>
+                <td> &#8377; <%= inventory.price %></td>
+                <td><a class="ps-product-link" href="<%= inventory.id %>">Update</a></td>
+                <td>
+                    <a href="/delete/<%= inventory.id %>" class="btn btn-danger"> delete </a>
+                </td>
+                </tr>
+           <% }); %>
+        </tbody>
+        </table>
+    </div>
 
-<ul>
-    <% inventories.forEach(function (inventory) { %>
-        <a href="<%= inventory.id %>"> <li >  <%= inventory.class %> <!-- note you defined the field as Name not name -->
-          <%= inventory.brnad %> 
-          <%= inventory.name %> 
-          <%= inventory.price %> 
-        </a>
-        <button class="btn btn-danger" href="/<%= inventory.id %>/delete"> delete </button>
-        </li>
-      <% }) %>
-    </ul>
-
-</div>
 </div>

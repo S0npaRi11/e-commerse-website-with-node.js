@@ -51,6 +51,7 @@ router.get('/addtowishlist/:id', (req,res) => {
             if(err) console.log(err);
             else{
                 console.log('added to wishlist');
+                res.status(201).send();
             }
         });
         }
@@ -60,6 +61,26 @@ router.get('/addtowishlist/:id', (req,res) => {
 
    
 });
+
+router.get('/removefromwishlist/:id', (req,res) => {
+
+
+    inventories.findOne({_id: req.params.id}, (err,result) => {
+        if(err) console.log(err);
+        else{
+        let a = result;
+        //    console.log(result);
+        //    console.log(a.id);
+           users.findOneAndUpdate({'email': req.session.email}, {'$pull': {'wishlist': {'product_id': a._id, 'class': a.class, 'brand': a.brand, 'name': a.name, 'price': a.price}}}).exec((err) => {
+            if(err) console.log(err);
+            else{
+                console.log('added to wishlist');
+                res.redirect('/wishlist');
+            }
+        });
+        }
+    });
+})
 
 // router.get('/orders', (req, res) => res.render('../views/previous.ejs'));
 

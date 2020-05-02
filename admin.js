@@ -15,7 +15,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/', require('./admin/index.js'));
 app.use('/', require('./admin/addProducts.js'));
 app.use('/', require('./admin/updateProducts.js'));
-// app.use('/', require('./admin/deleteProduct.js'));
+app.use('/', require('./admin/deleteProduct.js'));
 // app.use('/about', require('./routes/about.js'));
 // app.use('/contact', require('./routes/contact.js'));
 // app.use('/', require('./routes/login.js'));

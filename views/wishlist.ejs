@@ -19,7 +19,7 @@
                     <td> &#8377; <%= item.price %></td>
                     <td><a class="ps-product-link" href="/store/<%= item.product_id %>">View Product</a></td>
                     <td>
-                        <div class="ps-remove"></div>
+                       <a href="/removefromwishlist/<%= item.product_id %>" class="ps-remove">  </a>
                     </td>
                     </tr>
                <% }); %>

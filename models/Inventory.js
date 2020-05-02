@@ -32,6 +32,10 @@ const inventorySchema = new mongoose.Schema({
     image:{
         type : String,
         default: ' '
+    },
+    sells:{
+        type: Number,
+        default: 0
     }
 });
 

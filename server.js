@@ -9,6 +9,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const mongoStore = require('connect-mongo')(session);
+const path = require('path');
 
 
 const app = express();
@@ -34,7 +35,7 @@ app.use(session({
 app.use(expressLayouts);
 app.use(express.urlencoded({extended: true}));
 app.set('view engine','ejs');
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname + '/public')));
 app.use(passport.initialize());
 
 app.use(function(req, res, next) {
@@ -58,7 +59,9 @@ app.use('/', require('./routes/prodDetails.js'));
 app.use('/', require('./routes/update.js'));
 
 // app.get('*',(req,res) => {
-//     res.status(404).render('../views/404.ejs');
+   
 // });
+
+app.use('*', require('./routes/404.js'));
 
 app.listen(process.env.PORT || 3000);
