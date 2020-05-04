@@ -4,26 +4,26 @@
     <div class="ps-container">
         <div class="ps-cart-listing ps-table--whishlist">
             <table class="table ps-cart__table">
-            <thead>
-                <tr>
-                <th>All Products</th>
-                <th>Price</th>
-                <th>View</th>
-                <th> Purchase Date </th>
-                </tr>
-            </thead>
-            <tbody>
-               <% user.orders.forEach((item) => {  %>
-                <tr>
-                    <td><a class="ps-product__preview" href="product-detail.html"><img class="mr-15" src="<%= item.image %>" alt=" <%= item.image %> "><%= item.name %></a></td>
-                    <td> &#8377; <%= item.price %></td>
-                    <td><a class="ps-product-link" href="/store/<%= item.product_id %>">View Product</a></td>
-                    <td>
-                        <div class="ps-remove"></div>
-                    </td>
+                <thead>
+                    <tr>
+                    <th>All Products</th>
+                    <th>Price</th>
+                    <th>View</th>
+                    <th> Purchase Date </th>
                     </tr>
-               <% }); %>
-            </tbody>
+                </thead>
+                <tbody>
+                <% user.orders.forEach((item) => {  %>
+                        <tr>
+                            <td><a class="ps-product__preview" href="product-detail.html"><img class="mr-15" src="<%= item.image %>" alt=" <%= item.image %> "><%= item.name %></a></td>
+                            <td> &#8377; <%= item.price %></td>
+                            <td><a class="ps-product-link" href="/store/<%= item.product_id %>">View Product</a></td>
+                            <td>
+                                <div class="ps-remove"></div>
+                            </td>
+                        </tr>
+                <% }); %>
+                </tbody>
             </table>
         </div>
     </div>

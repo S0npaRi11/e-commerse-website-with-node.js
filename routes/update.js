@@ -50,38 +50,28 @@ router.get('/addtowishlist/:id', (req,res) => {
            users.findOneAndUpdate({'email': req.session.email}, {'$push': {'wishlist': {'product_id': a._id, 'class': a.class, 'brand': a.brand, 'name': a.name, 'price': a.price}}}).exec((err) => {
             if(err) console.log(err);
             else{
-                console.log('added to wishlist');
                 res.status(201).send();
+                res.redirect('/');
             }
         });
         }
     });
-
-    // console.log(a.id);
-
-   
 });
 
 router.get('/removefromwishlist/:id', (req,res) => {
-
-
     inventories.findOne({_id: req.params.id}, (err,result) => {
         if(err) console.log(err);
         else{
         let a = result;
-        //    console.log(result);
-        //    console.log(a.id);
            users.findOneAndUpdate({'email': req.session.email}, {'$pull': {'wishlist': {'product_id': a._id, 'class': a.class, 'brand': a.brand, 'name': a.name, 'price': a.price}}}).exec((err) => {
             if(err) console.log(err);
             else{
-                console.log('added to wishlist');
+                console.log('removed from wishlist');
                 res.redirect('/wishlist');
             }
         });
         }
     });
 })
-
-// router.get('/orders', (req, res) => res.render('../views/previous.ejs'));
 
 module.exports = router;

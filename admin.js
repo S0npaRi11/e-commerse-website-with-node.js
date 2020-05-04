@@ -5,6 +5,15 @@ const expressLayouts = require('express-ejs-layouts');
 
 const app = express();
 
+//connecting to daabase
+
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology:true});
+
+const db = mongoose.connection;
+
+db.on('error', error => console.log(error));
+db.once('open', () => console.log('connected to the user database'));
+
 //all app.use() here
 app.use(expressLayouts);
 app.use(express.urlencoded({extended: true}));
@@ -13,13 +22,8 @@ app.use(express.static(__dirname + '/public'));
 
 //all routes here
 app.use('/', require('./admin/index.js'));
-app.use('/', require('./admin/addProducts.js'));
+app.use('/add', require('./admin/addProducts.js'));
 app.use('/', require('./admin/updateProducts.js'));
 app.use('/', require('./admin/deleteProduct.js'));
-// app.use('/about', require('./routes/about.js'));
-// app.use('/contact', require('./routes/contact.js'));
-// app.use('/', require('./routes/login.js'));
-// app.use('/', require('./routes/users.js'));
-//app.use('/users', require('./routes/users.js'));
 
 app.listen(5000);

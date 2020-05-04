@@ -12,13 +12,10 @@ const app = express();
 function initialize(passport,getUserByEmail, getUserById){
 
     app.use(passport.initialize());
-   // console.log('entered initialize password function');
     const authenticateUser = (email,password,done) => {
         console.log('entered authenticate user function');
         users.findOne({email: email}) 
             .then(user => {
-                // req.session.user = user;
-                // console.log(req.session.user);
                 if(!user){
                     console.log('no user with that email');
                     return done(null,false,{message: 'No user with that email'});

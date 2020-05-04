@@ -9,14 +9,7 @@ router.get('/', (req, res) => {
         if (err) console.log(err);
         else{
             const a = result;
-            // console.log((a).sort().reverse());
             const b = a.sort().reverse();
-
-
-            console.log(result);
-
-
-            console.log("image to the product is here "+result[0].image);
             res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b});
         }
     });

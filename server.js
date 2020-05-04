@@ -2,7 +2,6 @@ if(process.env.NODE_ENV !== 'production'){
     require('dotenv').config();
 }
 
-
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport');
@@ -11,21 +10,15 @@ const session = require('express-session');
 const mongoStore = require('connect-mongo')(session);
 const path = require('path');
 
-
 const app = express();
 
 // connecting to the server
-
 mongoose.connect(process.env.DATABASE_URL,{useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true});
-
- const db = mongoose.connection
-
- db.on('error', error => console.error(error));
- db.once('open', () => console.log('connected to the user database'));
-
+const db = mongoose.connection
+db.on('error', error => console.error(error));
+db.once('open', () => console.log('connected to the user database'));
 
 //all app.use() here
-
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -37,16 +30,12 @@ app.use(express.urlencoded({extended: true}));
 app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(passport.initialize());
-
 app.use(function(req, res, next) {
     res.locals.user = req.session.user;
     next();
 });
 
-
-
 //all routes here
-
 app.use('/', require('./routes/index.js'));
 app.use('/about', require('./routes/about.js'));
 app.use('/contact', require('./routes/contact.js'));
@@ -55,13 +44,7 @@ app.use('/', require('./routes/users.js'));
 app.use('/', require('./routes/store.js'));
 app.use('/', require('./routes/search.js'));
 app.use('/', require('./routes/prodDetails.js'));
-// app.use('/', require('./routes/dashboard.js'));
 app.use('/', require('./routes/update.js'));
-
-// app.get('*',(req,res) => {
-   
-// });
-
 app.use('*', require('./routes/404.js'));
 
 app.listen(process.env.PORT || 3000);

@@ -9,11 +9,11 @@ const products = require('../models/Inventory');
 
 const router = express.Router();
 
-router.get('/addProducts', (req, res) => {
+router.get('/products', (req, res) => {
     res.render('../admin/addProdForm.ejs');
 });
 
-router.post('/addProducts', (req,res) => {
+router.post('/products', (req,res) => {
     const newProduct = new products({
         class: req.body.class.trim(),
         brand: req.body.brand.trim(),

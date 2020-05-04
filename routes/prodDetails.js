@@ -15,7 +15,6 @@ router.get('/product/:id', (req,res) => {
             inventory.find({class: result.class}, (err,recommended) => {
                 if(err) console.log(err)
                 else{
-                    console.log(recommended);
                     res.render('../views/prodDetails.ejs', {class: req.class, brand: req.brand, name: req.name,price: req.price,id: req.id,inventories: result, product: recommended});
                 }
             });
