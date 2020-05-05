@@ -10,17 +10,17 @@
                     <th>Price</th>
                     <th>View</th>
                     <th> Purchase Date </th>
+                    <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                <% user.orders.forEach((item) => {  %>
+                <% orders.forEach((item) => {  %>
                         <tr>
-                            <td><a class="ps-product__preview" href="product-detail.html"><img class="mr-15" src="<%= item.image %>" alt=" <%= item.image %> "><%= item.name %></a></td>
-                            <td> &#8377; <%= item.price %></td>
-                            <td><a class="ps-product-link" href="/store/<%= item.product_id %>">View Product</a></td>
-                            <td>
-                                <div class="ps-remove"></div>
-                            </td>
+                            <td><a class="ps-product__preview" href="product-detail.html"><img class="mr-15" src="<%= item.image %>" alt=" <%= item.image %> "><%= item.productName %></a></td>
+                            <td> &#8377; <%= item.productPrice %></td>
+                            <td><a class="ps-product-link" href="/store/<%= item.productId %>">View Product</a></td>
+                            <td> <%= item.orderDate %> </td>
+                            <td> <%= item.orderStatus %> </td>
                         </tr>
                 <% }); %>
                 </tbody>

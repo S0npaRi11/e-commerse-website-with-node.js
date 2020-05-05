@@ -1,4 +1,9 @@
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config();
+}
+
 const express = require('express');
+const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
 
 
@@ -25,5 +30,6 @@ app.use('/', require('./admin/index.js'));
 app.use('/add', require('./admin/addProducts.js'));
 app.use('/', require('./admin/updateProducts.js'));
 app.use('/', require('./admin/deleteProduct.js'));
+app.use('/orders', require('./admin/orders.js'));
 
 app.listen(5000);

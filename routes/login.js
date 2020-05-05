@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const users = require('../models/User');
 const initializePassport = require('./passport-config');
 const methodOverride = require('method-override');
+const orders = require('../models/Orders');
 
 const app = express();
 app.use(passport.initialize());
@@ -75,7 +76,6 @@ router.get('/wishlist', (req, res) => {
     users.findOne({email: req.session.email}, (err,user) => {
        if(err) console.log(err);
        else{
-           console.log(user.wishlist);
         res.render('../views/wishlist.ejs',{wishlist: req.wishlist, user: user});
        }
     })
@@ -83,11 +83,10 @@ router.get('/wishlist', (req, res) => {
 });
 
 router.get('/orders', (req, res) => {
-    users.findOne({email: req.session.email}, (err,user) => {
+    orders.find({userEmail: req.session.email}, (err,user) => {
        if(err) console.log(err);
        else{
-           console.log(user.orders);
-        res.render('../views/previous.ejs',{orders: req.orders, user: user});
+        res.render('../views/previous.ejs',{orders: user});
        }
     })
    
