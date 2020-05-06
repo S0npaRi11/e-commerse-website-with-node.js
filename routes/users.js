@@ -4,7 +4,6 @@ if(process.env.NODE_ENV !== 'production'){
 
 const express = require('express');
 const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
 const users = require('../models/User');
 const flash = require('express-flash');
 const session = require('express-session');

@@ -41,7 +41,7 @@ app.use('/about', require('./routes/about.js'));
 app.use('/contact', require('./routes/contact.js'));
 app.use('/', require('./routes/login.js'));
 app.use('/', require('./routes/users.js'));
-app.use('/', require('./routes/store.js'));
+app.use('/store', require('./routes/store.js'));
 app.use('/', require('./routes/search.js'));
 app.use('/', require('./routes/prodDetails.js'));
 app.use('/', require('./routes/update.js'));

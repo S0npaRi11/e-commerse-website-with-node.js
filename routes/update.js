@@ -18,6 +18,7 @@ router.post('/updatepass', (req,res) => {
     users.findOneAndUpdate({'email': req.session.email}, {'$set': {'password': hashedPassword}}).exec((err) => {
         if(err){
             console.log(err);
+            res.render('../views/500.ejs');
         }else{
             res.redirect('/dashboard');
         }
@@ -31,6 +32,7 @@ router.post('/updateaddress', (req,res) => {
     users.findOneAndUpdate({'email': req.session.email}, {'$set': {'address': req.body.address, 'pin': req.body.pin}}).exec((err) => {
         if(err){
             console.log(err);
+            res.render('../views/500.ejs');
         }else{
             console.log('changed');
             res.redirect('/dashboard');
@@ -42,16 +44,20 @@ router.get('/addtowishlist/:id', (req,res) => {
 
   
     let a =  inventories.findOne({_id: req.params.id}, (err,result) => {
-        if(err) console.log(err);
+        if(err) {
+            console.log(err);
+            res.render('../views/500.ejs');
+        }
         else{
          a = result;
-           console.log(result);
-           console.log(a.id);
            users.findOneAndUpdate({'email': req.session.email}, {'$push': {'wishlist': {'product_id': a._id, 'class': a.class, 'brand': a.brand, 'name': a.name, 'price': a.price}}}).exec((err) => {
-            if(err) console.log(err);
+            if(err) {
+                console.log(err);
+                res.render('../views/500.ejs');
+            }
             else{
-                res.status(201).send();
-                res.redirect('/');
+                res.status(204).send();
+                // res.redirect('/');
             }
         });
         }

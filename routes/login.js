@@ -6,7 +6,6 @@ const express = require('express');
 const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
-const mongoose = require('mongoose');
 const users = require('../models/User');
 const initializePassport = require('./passport-config');
 const methodOverride = require('method-override');
@@ -63,6 +62,7 @@ router.get('/dashboard', (req, res) => {
     users.findOne({email: req.session.email}, (error,user) => {
         if(error){
             console.log(error);
+            res.render('../views/500.ejs');
         }else{
             req.session.user = user;
 
@@ -74,7 +74,10 @@ router.get('/dashboard', (req, res) => {
 
 router.get('/wishlist', (req, res) => {
     users.findOne({email: req.session.email}, (err,user) => {
-       if(err) console.log(err);
+       if(err){
+        console.log(err);
+        res.render('../views/500.ejs');
+       } 
        else{
         res.render('../views/wishlist.ejs',{wishlist: req.wishlist, user: user});
        }
@@ -84,7 +87,10 @@ router.get('/wishlist', (req, res) => {
 
 router.get('/orders', (req, res) => {
     orders.find({userEmail: req.session.email}, (err,user) => {
-       if(err) console.log(err);
+       if(err){
+        console.log(err);
+        res.render('../views/500.ejs');
+       }
        else{
         res.render('../views/previous.ejs',{orders: user});
        }
@@ -95,7 +101,10 @@ router.get('/orders', (req, res) => {
 router.post('/logout',(req,res) => {
     req.logOut();
     req.session.destroy((err) =>{
-        if(err) console.log(err);
+        if(err){
+            console.log(err);
+            res.render('../views/500.ejs');
+        }
         else{
             console.log("logout complete");
             res.redirect('/login');

@@ -1,0 +1,33 @@
+<%- include('./partials/_navbar') %>
+
+    <main class="ps-main">
+
+        <div class="ps-section__header mb-50 container">
+            <h3 class="ps-section__title" data-mask="<%= inventories[0].class %>">- <%= inventories[0].brand %></h3>
+          </div>
+        <div class="row">
+            <div class="ps-products-wrap pt-80 pb-80 col-sm-9">
+                <div class="ps-product__columns">
+                    <% inventories.forEach(function (inventory) { %>
+                    <a href="/<%= inventory.id %>">  <div class="ps-product__column">
+                            <div class="ps-shoe mb-30">
+                                <div class="ps-shoe__thumbnail">
+                                    <a class="ps-shoe__favorite" href="/addtowishlist/<%= inventory.id %>"><i class="../../ps-icon-heart"></i></a><img src="../../<%= inventory.image %>" alt="<%= inventory.image %> "><a class="ps-shoe__overlay" href="/product/<%= inventory.id %>"></a>
+                                </div>
+                                <div class="ps-shoe__content">
+                                    <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">    <%= inventory.name %>  </a>
+                                        <p class="ps-shoe__categories">  <%= inventory.brand %>  </p><span class="ps-shoe__price">
+                                            &#8377; <%= inventory.price %> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <% }) %> 
+                </div>
+            </div>
+            <%- include('./partials/_sort_sidebar') %>
+        </div>
+    </div>
+
+<%- include('./partials/_footer') %>

@@ -13,7 +13,10 @@ router.get('/product/:id', (req,res) => {
         if(err) console.log(err);
         else{
             inventory.find({class: result.class}, (err,recommended) => {
-                if(err) console.log(err)
+                if(err){
+                    console.log(err);
+                    res.render('../views/500.ejs');
+                }
                 else{
                     res.render('../views/prodDetails.ejs', {class: req.class, brand: req.brand, name: req.name,price: req.price,id: req.id,inventories: result, product: recommended});
                 }

@@ -6,7 +6,10 @@ const router = express.Router();
 router.get('/', (req, res) => {
 
     inventories.find({class: 'mobile'}, (err,result) => {
-        if (err) console.log(err);
+        if (err){
+            console.log(err);
+            res.render('../views/500.ejs'); 
+        } 
         else{
             const a = result;
             const b = a.sort().reverse();
