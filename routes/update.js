@@ -2,28 +2,80 @@ const express = require('express');
 const users = require('../models/User');
 const bcrypt = require('bcrypt');
 const inventories = require('../models/Inventory');
+const updatePass = require('../models/UpdatePass');
 
 const router = express.Router();
 
 router.get('/updatepass', (req, res) => {
-    console.log(req.session);
-    res.render('../views/updatepass.ejs');
+   
+    // put the password update request in UpdatePass collection
 
+    console.log(req.session.user);
+    let updateRequest = new updatePass({
+        uName: req.session.user.fname,
+        uId: req.session.user._id,
+        uEmail: req.session.email,
+    });
+
+    // updateRequest.save().then(err => {
+    //     if(err){
+    //         console.log(err);
+    //         res.render('../views/500.ejs');
+    //     }else{
+    //         //In future, we want to send an email with a unique link to change the password
+    //         //for testing, we are directly rendering updatePass
+
+    //         res.render('../views/updatepass.ejs');
+    //     }
+
+    updateRequest.save().then(() => {
+        
+            //In future, we want to send an email with a unique link to change the password
+            //for testing, we are directly rendering updatePass
+
+            res.render('../views/updatepass.ejs');
+    }).catch((err) => {
+        console.log(err);
+        res.render('../views/500.ejs');
+    }) ;
 });
 
-router.post('/updatepass', (req,res) => {
+router.post('/updatepass/:id/:time', (req,res) => {
 
-    const hashedPassword =  bcrypt.hash(req.body.password2, 10);
+    // here, we will check ofr the upate password request in the collection by id and time and isUsed flag
+    // if failed, render 404
+    //else change the password and update isUsed flag to true
 
-    users.findOneAndUpdate({'email': req.session.email}, {'$set': {'password': hashedPassword}}).exec((err) => {
+    updatePass.findById(req.params.id, (err, result) => {
         if(err){
             console.log(err);
             res.render('../views/500.ejs');
         }else{
-            res.redirect('/dashboard');
+            if(result.requestTime < req.params.time && result.expireTime > req.params.time && result.isUsed == 'false'){
+
+                updatePass.findOneAndUpdate({_id: result.id},{$set:{isUsed: 'true'}}, err => {
+                    if(err){
+                        console.log(err);
+                        res.render('../views/500.ejs');
+                    }
+                });
+
+                const hashedPassword =  bcrypt.hash(req.body.password2, 10);
+
+                users.findOneAndUpdate({'email': req.session.email}, {'$set': {'password': hashedPassword}}).exec((err) => {
+                    if(err){
+                        console.log(err);
+                        res.render('../views/500.ejs');
+                    }else{
+                        res.redirect('/dashboard');
+                    }
+                });
+                console.log("password changed");
+            }
         }
     });
-    console.log("password changed");
+
+   
 });
 
 router.get('/updateaddress', (req, res) => res.render('../views/updateaddress.ejs'));

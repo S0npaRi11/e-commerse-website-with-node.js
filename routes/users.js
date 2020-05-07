@@ -31,14 +31,11 @@ router.post('/register', async (req,res) => {
             pin: req.body.pin.trim(),
             address: req.body.address.trim(),
         });
-        newUser.save().then( (err) =>{
-            if(err){
-                console.log(err);
-                res.render('../views/register.ejs');
-               
-            }else{
-                res.render('../views/login.ejs');
-            }
+        newUser.save().then( () =>{
+            res.render('../views/login.ejs');
+        }).catch(() => {
+            console.log(err);
+            res.render('../views/500.ejs');
         });
     }
     catch{
