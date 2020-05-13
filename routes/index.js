@@ -13,7 +13,17 @@ router.get('/', (req, res) => {
         else{
             const a = result;
             const b = a.sort().reverse();
-            res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b});
+            // const c = a.sells.sort();
+            // console.log(c);
+            inventories.find({class: 'mobile'},null,{sort:{sells: 1}}, (err,popular) => {
+                if(err){
+                    console.log(err);
+                    res.render('../views/500.ejs'); 
+                }else{
+                    res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
+                }
+            })
+            
         }
     });
   

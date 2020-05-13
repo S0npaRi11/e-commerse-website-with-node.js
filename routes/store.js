@@ -10,11 +10,83 @@ router.get('/',(req,res) => {
             console.log(err);
             res.render('../views/500.ejs');
         }
-        else{
-            const a = result;
-            const b = a.sort().reverse();
-            res.render('../views/store.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b});
+
+        const a = result;
+        const b = a.sort().reverse();
+        inventory.find({class: 'mobile'},null,{sort:{sells: 1}}, (err,popular) => {
+            if(err){
+                console.log(err);
+                res.render('../views/500.ejs'); 
+            }else{
+                res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
+            }
+        })
+    });
+});
+
+// popular and recent routes for every class
+
+//dslrs
+router.get('/dslrs/recent', (req,res) => {
+    inventory.find({class: 'dslr'},null,{sort:{id: 1}}, (err,result) => {
+        if(err) {
+            console.log(err);
+            res.render('../views/500.ejs');
         }
+        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+    });
+});
+
+router.get('/dslrs/popular', (req,res) => {
+    inventory.find({class: 'dslr'},null,{sort:{sells: -1}}, (err,result) => {
+        if(err) {
+            console.log(err);
+            res.render('../views/500.ejs');
+        }
+        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+    });
+});
+// laptops
+
+router.get('/laptops/recent', (req,res) => {
+    inventory.find({class: 'laptop'},null,{sort:{id: 1}}, (err,result) => {
+        if(err) {
+            console.log(err);
+            res.render('../views/500.ejs');
+        }
+        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+    });
+});
+
+router.get('/lpatops/popular', (req,res) => {
+    inventory.find({class: 'laptops'},null,{sort:{sells: -1}}, (err,result) => {
+        if(err) {
+            console.log(err);
+            res.render('../views/500.ejs');
+        }
+        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+    });
+});
+
+// mobiles
+
+router.get('/mobiles/recent', (req,res) => {
+    inventory.find({class: 'mobile'},null,{sort:{id: 1}}, (err,result) => {
+        if(err) {
+            console.log(err);
+            res.render('../views/500.ejs');
+        }
+        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+    });
+});
+
+router.get('/mobiles/popular', (req,res) => {
+    inventory.find({class: 'mobile'},null,{sort:{sells: -1}}, (err,result) => {
+        if(err) {
+            console.log(err);
+            res.render('../views/500.ejs');
+        }
+        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
     });
 });
 
@@ -25,11 +97,17 @@ router.get('/mobiles', (req,res) => {
             console.log(err);
             res.render('../views/500.ejs');
         }
-        else{
-            const a = result;
-            const b = a.sort().reverse();
-            res.render('../views/store.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b});
-        }
+
+        const a = result;
+        const b = a.sort().reverse();
+        inventory.find({class: 'mobile'},null,{sort:{sells: 1}}, (err,popular) => {
+            if(err){
+                console.log(err);
+                res.render('../views/500.ejs'); 
+            }else{
+                res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
+            }
+        })
     });
 });
 
@@ -39,11 +117,17 @@ router.get('/laptops', (req,res) => {
             console.log(err);
             res.render('../views/500.ejs');
         }
-        else{
-            const a = result;
-            const b = a.sort().reverse();
-            res.render('../views/store.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b});
-        }
+
+        const a = result;
+        const b = a.sort().reverse();
+        inventory.find({class: 'mobile'},null,{sort:{sells: 1}}, (err,popular) => {
+            if(err){
+                console.log(err);
+                res.render('../views/500.ejs'); 
+            }else{
+                res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
+            }
+        })
     });
 });
 
@@ -53,11 +137,17 @@ router.get('/dslrs', (req,res) => {
             console.log(err);
             res.render('../views/500.ejs');
         }
-        else{
-            const a = result;
-            const b = a.sort().reverse();
-            res.render('../views/store.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b});
-        }
+
+        const a = result;
+        const b = a.sort().reverse();
+        inventory.find({class: 'mobile'},null,{sort:{sells: 1}}, (err,popular) => {
+            if(err){
+                console.log(err);
+                res.render('../views/500.ejs'); 
+            }else{
+                res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
+            }
+        })
     });
 });
 

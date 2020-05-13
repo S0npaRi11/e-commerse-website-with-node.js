@@ -45,6 +45,7 @@ app.use('/store', require('./routes/store.js'));
 app.use('/', require('./routes/search.js'));
 app.use('/', require('./routes/prodDetails.js'));
 app.use('/', require('./routes/update.js'));
+app.use('/purchase', require('./routes/purchase.js'));
 app.use('*', require('./routes/404.js'));
 
 app.listen(process.env.PORT || 3000);

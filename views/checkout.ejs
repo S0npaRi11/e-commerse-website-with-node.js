@@ -1,0 +1,51 @@
+<div style="
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);"">
+        <form action="/purchase/success/<%=inventories.id%>" method="POST">
+            <div class="ps-product--detail pt-60">  
+                <div class="main">
+                    <div class="ps-container">
+                      <div class="row">
+                            <div class="col-lg-10 col-md-12 col-lg-offset-1">
+                                <div class="ps-product__thumbnail">
+                                    <div class="ps-product__image">
+                                        <div class="item"><img class="zoom" src="../<%= inventories.image %>" alt="<%= inventories.image %>" data-zoom-image="images/shoe-detail/1.jpg"></div>
+                                    </div>
+                                </div>
+                                <div class="ps-product__thumbnail--mobile">
+                                    <div class="ps-product__main-img"><img src="<%= inventories.image %>" alt="<%= inventories.image %>"></div>
+                                </div>
+                                <div class="ps-product__info"> 
+                                    <h1><%= inventories.name %></h1>
+                                    <p class="ps-product__category"><%= inventories.class %>,<%= inventories.brand %></p>
+                                    <h3 class="ps-product__price"> &#8377; <%= inventories.price %></h3>
+                                    <div class="ps-product__block ps-product__quickview">
+                                        <h4>Description</h4>
+                                        <p> <%=inventories.description %> </p>
+                                    </div>
+                                    <input type="hidden" custom="Hidden Element" name="hidden">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script 
+            src="https://checkout.razorpay.com/v1/checkout.js" 
+            data-key= "<%= key %>"  
+            data-amount="50000" 
+            data-currency="INR"   
+            data-order_id="<%= orderID %>"
+            data-buttontext="Pay with Razorpay"  
+            data-name="Acme Corp"  
+            data-description="Test transaction" 
+            data-image="https://example.com/your_logo.jpg"  
+            data-theme.color="#F37254">
+        </script>
+   </form>
+</div>
