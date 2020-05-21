@@ -13,9 +13,9 @@ router.get('/:id', (req,res) => {
     const instance = new razorpay({
         key_id: process.env.RAZORPAY_ID,
         key_secret: process.env.RAZORPAY_SECRET
-    })
+    });
 
-    const options;
+    const options = {};
     inventory.findById(req.params.id, (err,product) => {
         if(err) console.log(err);
         else{
@@ -36,7 +36,7 @@ router.get('/:id', (req,res) => {
     });
 });
 
-outer.post('/success/:id', (req,res)=> {
+router.post('/success/:id', (req,res)=> {
     console.log(req.body);
     let generatedSignature = crypto
         .createHmac(
