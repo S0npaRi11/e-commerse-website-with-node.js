@@ -3,13 +3,13 @@ const users = require('../models/User');
 const bcrypt = require('bcrypt');
 const inventories = require('../models/Inventory');
 const updatePass = require('../models/UpdatePass');
+const email = require('./emailConfig');
 
 const router = express.Router();
 
 router.get('/updatepass', (req, res) => {
    
     // put the password update request in UpdatePass collection
-
     console.log(req.session.user);
     let updateRequest = new updatePass({
         uName: req.session.user.fname,
@@ -17,23 +17,25 @@ router.get('/updatepass', (req, res) => {
         uEmail: req.session.email,
     });
 
-    // updateRequest.save().then(err => {
-    //     if(err){
-    //         console.log(err);
-    //         res.render('../views/500.ejs');
-    //     }else{
-    //         //In future, we want to send an email with a unique link to change the password
-    //         //for testing, we are directly rendering updatePass
-
-    //         res.render('../views/updatepass.ejs');
-    //     }
-
     updateRequest.save().then(() => {
-        
-            //In future, we want to send an email with a unique link to change the password
-            //for testing, we are directly rendering updatePass
 
-            res.render('../views/updatepass.ejs');
+        // build the template here
+        let template = ``;
+
+        // send an email with the valid link to reset the password from here
+        const mailOptions = {
+            from: process.env.EMAIL_SEND,  // sender's email
+            to: req.session.email, // receiver's email
+            subject: 'Purchase Receipt',
+            html:   template// template gose here
+        }
+
+        email.sendMail(mailOptions, err => {
+            if(err) console.log(err);
+            else{
+                console.log('email sent for password reset')
+            }
+        });
     }).catch((err) => {
         console.log(err);
         res.render('../views/500.ejs');

@@ -4,6 +4,7 @@ const inventory = require('../models/Inventory');
 const crypto = require('crypto');
 const user  = require('../models/User');
 const order = require('../models/Orders');
+const email = require('./emailConfig');
 
 const router = express.Router();
 
@@ -67,7 +68,24 @@ router.post('/success/:id', (req,res)=> {
                 user.findOne({email:req.session.email}, {$set:{orders:{class: product.class, brand: product.brand, price: product.price, orderID: req.body.razorpay_order_id, paymentID: req.body.razorpay_payment_id}}}, err => {
                     if(err) console.log(err);
                     else{
-                        res.rediect('/product/' + product.id);
+
+                        // build the template here
+                        let template = `<p>  You have perchased ${product.nme}  for ${product.price} </p>`;
+
+                        // send an email with the product perchased receipt from here
+                        const mailOptions = {
+                            from: process.env.EMAIL_SEND,  // sender's email
+                            to: req.session.email, // receiver's email
+                            subject: 'Purchase Receipt',
+                            html:   template// template gose here
+                        }
+
+                        email.sendMail(mailOptions, err => {
+                            if(err) console.log(err);
+                            else{
+                                res.rediect('/product/' + product.id);
+                            }
+                        })
                     }
                 });
             }).catch( (err)=>{

@@ -46,12 +46,13 @@ router.post('/login', (req,res) => {
             }else{
                 return user;
             }
-        })
+        }), req
     );
 
     passport.authenticate('local',{
         successRedirect: '/dashboard',
-        failureRedirect: '/login'
+        failureRedirect: '/login',
+        failureFlash: true
     })(req,res);
     req.session.email = req.body.email;
 });

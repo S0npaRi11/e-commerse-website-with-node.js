@@ -9,7 +9,7 @@ const app = express();
 
 
 
-function initialize(passport,getUserByEmail, getUserById){
+function initialize(passport,getUserByEmail, getUserById,req){
 
     app.use(passport.initialize());
     const authenticateUser = (email,password,done) => {
@@ -18,7 +18,7 @@ function initialize(passport,getUserByEmail, getUserById){
             .then(user => {
                 if(!user){
                     console.log('no user with that email');
-                    return done(null,false,{message: 'No user with that email'});
+                    return done(null,false,{message : 'no user with this email'});
                 }
 
                 bcrypt.compare(password,user.password, (err,isMatch) => {
@@ -28,7 +28,7 @@ function initialize(passport,getUserByEmail, getUserById){
                         return done(null, user);
                     }else{
                         console.log('incorrect password')
-                        return done(null,false,{message: 'Incorrect Password'});
+                        return done(null,false,{message : 'incorrect password'});
                     }
                 })
             })
