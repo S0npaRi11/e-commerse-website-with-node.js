@@ -9,36 +9,39 @@ const email = require('./emailConfig');
 const router = express.Router();
 
 router.get('/:id', (req,res) => {
-
-    // creating an istance
-    const instance = new razorpay({
-        key_id: process.env.RAZORPAY_ID,
-        key_secret: process.env.RAZORPAY_SECRET
-    });
-
-    const options = {};
-    inventory.findById(req.params.id, (err,product) => {
-        if(err) console.log(err);
-        else{
-            options.price = product.price * 100; 
-            options.currency = 'INR';
-        }
-
-        instance.orders.create(options, (err,order) => {
-            if(err) {
-                console.log(err);
-                res.render('../views/500.ejs');
-            }
-            else{
-                console.log(order);
-                res.render('../views/checkout.ejs',{orderID: order.id, key: instance.key_id, inventories:product});
-            }
+    if(req.session.email){
+        // creating an istance
+        const instance = new razorpay({
+            key_id: process.env.RAZORPAY_ID,
+            key_secret: process.env.RAZORPAY_SECRET
         });
-    });
+
+        const options = {};
+        inventory.findById(req.params.id, (err,product) => {
+            if(err) console.log(err);
+            else{
+                options.price = product.price * 100; 
+                options.currency = 'INR';
+            }
+
+            instance.orders.create(options, (err,order) => {
+                if(err) {
+                    console.log(err);
+                    res.render('../views/500.ejs');
+                }
+                else{
+                    console.log(order);
+                    res.render('../views/checkout.ejs',{orderID: order.id, key: instance.key_id, inventories:product});
+                }
+            });
+        });
+    }else{
+        res.render('../views/login.ejs',{message: 'You are not logged in. Log in to proceed further.'});
+    }
 });
 
 router.post('/success/:id', (req,res)=> {
-    console.log(req.body);
+    // console.log(req.body);
     let generatedSignature = crypto
         .createHmac(
             "SHA256",

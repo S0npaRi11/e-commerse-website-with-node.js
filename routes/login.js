@@ -59,59 +59,72 @@ router.post('/login', (req,res) => {
 
 
 router.get('/dashboard', (req, res) => {
-    console.log(req.session.email);
-    users.findOne({email: req.session.email}, (error,user) => {
-        if(error){
-            console.log(error);
-            res.render('../views/500.ejs');
-        }else{
-            req.session.user = user;
+    // console.log(req.session.email);
+    if(req.session.email){
+        users.findOne({email: req.session.email}, (error,user) => {
+            if(error){
+                console.log(error);
+                res.render('../views/500.ejs');
+            }else{
+                req.session.user = user;
 
-            res.locals.user = req.session.user;
-            res.render('../views/dashboard.ejs',{name: req.session.fname, email: req.session.email,pno: req.session.pno, address: req.session.address, pin: req.session.pin});
-        }
-    });
+                res.locals.user = req.session.user;
+                res.render('../views/dashboard.ejs',{name: req.session.fname, email: req.session.email,pno: req.session.pno, address: req.session.address, pin: req.session.pin});
+            }
+        });
+    }else{
+        res.render('../views/login.ejs',{message: 'You are not logged in. Log in to proceed further.'})
+    }
 });
 
 router.get('/wishlist', (req, res) => {
-    users.findOne({email: req.session.email}, (err,user) => {
-       if(err){
-        console.log(err);
-        res.render('../views/500.ejs');
-       } 
-       else{
-        res.render('../views/wishlist.ejs',{wishlist: req.wishlist, user: user});
-       }
-    })
-   
+    if(req.session.email){
+        users.findOne({email: req.session.email}, (err,user) => {
+            if(err){
+                console.log(err);
+                res.render('../views/500.ejs');
+            } 
+            else{
+                res.render('../views/wishlist.ejs',{wishlist: req.wishlist, user: user});
+            }
+        });
+    }else{
+        res.render('../views/login.ejs',{message: 'You are not logged in. Log in to proceed further.'})
+    }
 });
 
 router.get('/orders', (req, res) => {
-    orders.find({userEmail: req.session.email}, (err,user) => {
-       if(err){
-        console.log(err);
-        res.render('../views/500.ejs');
-       }
-       else{
-        res.render('../views/previous.ejs',{orders: user});
-       }
-    })
-   
+    if(req.session.email){
+        orders.find({userEmail: req.session.email}, (err,user) => {
+            if(err){
+                console.log(err);
+                res.render('../views/500.ejs');
+            }
+            else{
+                res.render('../views/previous.ejs',{orders: user});
+            }
+        });
+    }else{
+        res.render('../views/login.ejs',{message: 'You are not logged in. Log in to proceed further.'})
+    }
 });
 
 router.post('/logout',(req,res) => {
-    req.logOut();
-    req.session.destroy((err) =>{
-        if(err){
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
-        else{
-            console.log("logout complete");
-            res.redirect('/login');
-        }
-    });
-   
+    if(req.session.email){
+        req.logOut();
+        req.session.destroy((err) =>{
+            if(err){
+                console.log(err);
+                res.render('../views/500.ejs');
+            }
+            else{
+                console.log("logout complete");
+                res.redirect('/login');
+            }
+        });
+    }else{
+        res.render('../views/login.ejs',{message: 'You are not logged in. Log in to proceed further.'})
+    }
 });
 
 module.exports = router;
