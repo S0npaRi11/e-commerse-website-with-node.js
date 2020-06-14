@@ -6538,3 +6538,15 @@ html .bg--parallax {
   padding-left: 100px; }
 
 /*# sourceMappingURL=style.css.map */
+
+.centerAlign{
+  margin: auto;
+  width: 50%;
+}
+
+@media (max-width: 740px){
+  .centerAlign{
+    margin: auto;
+    width: 100%;
+  }
+}

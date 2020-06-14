@@ -3,23 +3,28 @@ const mongoose = require('mongoose');
 const inventorySchema = new mongoose.Schema({
     class:{
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     brand:{
         type: String,
-        required :true
+        required :true,
+        trim: true
     },
     name:{
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     price:{
         type: Number,
-        required: true
+        required: true,
+        trim: true
     },
     description:{
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     stock:{
         type: Number,
@@ -31,7 +36,8 @@ const inventorySchema = new mongoose.Schema({
     },
     image:{
         type : String,
-        default: ' '
+        default: ' ',
+        trim: true
     },
     sells:{
         type: Number,
