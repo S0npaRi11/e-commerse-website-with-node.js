@@ -32,7 +32,7 @@ router.post('/register', async (req,res) => {
         });
         newUser.save().then( () =>{
             res.render('../views/login.ejs');
-        }).catch(() => {
+        }).catch((err) => {
             console.log(err);
             res.render('../views/500.ejs');
         });

@@ -41,6 +41,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(flash());
 app.use(passport.initialize());
+// app.use(passport.session());
 app.use(function (req, res, next) {
     res.locals.user = req.session.user;
     res.locals.error = req.flash('error');

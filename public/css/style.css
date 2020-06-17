@@ -6544,9 +6544,41 @@ html .bg--parallax {
   width: 50%;
 }
 
+.mobileBottomNav{
+  display: none;
+}
+
 @media (max-width: 740px){
   .centerAlign{
     margin: auto;
     width: 100%;
+  }
+}
+
+
+@media (max-width: 740px){
+  .mobileBottomNav{
+    display: block;
+    width: 100%;
+    height: 70px;
+    background: #2ac37d;
+    position: fixed;
+    bottom: 0;
+    padding: 10px;
+    z-index: 1000;
+    text-align: center;
+    font-size: 15px;
+    color: #fff
+  }
+  
+  .mobileBottomNav > a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .mobileBottomNav > i {
+    font-size: 25px;
+    padding: 5px;
+    font-weight: lighter
   }
 }

@@ -21,6 +21,14 @@ app.use(function(req, res, next) {
     next();
 });
 
+// function isLoggedIn(req, res, next) {
+//     // passport adds this to the request object
+//     if (req.isAuthenticated()) {
+//         req.session.email = req.body.email;
+//         return next();
+//     }
+//     res.redirect('/login');
+// }
 
 const router = express.Router();
 
@@ -58,7 +66,7 @@ router.post('/login', (req,res) => {
 });
 
 
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard',(req, res) => {
     // console.log(req.session.email);
     if(req.session.email){
         users.findOne({email: req.session.email}, (error,user) => {
@@ -73,7 +81,7 @@ router.get('/dashboard', (req, res) => {
             }
         });
     }else{
-        res.render('../views/login.ejs',{message: 'You are not logged in. Log in to proceed further.'})
+        res.render('../views/login.ejs',{error: 'You are not logged in. Log in to proceed further.'})
     }
 });
 
@@ -89,7 +97,7 @@ router.get('/wishlist', (req, res) => {
             }
         });
     }else{
-        res.render('../views/login.ejs',{message: 'You are not logged in. Log in to proceed further.'})
+        res.render('../views/login.ejs',{error: 'You are not logged in. Log in to proceed further.'})
     }
 });
 
@@ -105,7 +113,7 @@ router.get('/orders', (req, res) => {
             }
         });
     }else{
-        res.render('../views/login.ejs',{message: 'You are not logged in. Log in to proceed further.'})
+        res.render('../views/login.ejs',{error: 'You are not logged in. Log in to proceed further.'})
     }
 });
 
@@ -123,7 +131,7 @@ router.post('/logout',(req,res) => {
             }
         });
     }else{
-        res.render('../views/login.ejs',{message: 'You are not logged in. Log in to proceed further.'})
+        res.render('../views/login.ejs',{error: 'You are not logged in. Log in to proceed further.'})
     }
 });
 
