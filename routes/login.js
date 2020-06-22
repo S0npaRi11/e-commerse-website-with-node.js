@@ -77,7 +77,7 @@ router.get('/dashboard',(req, res) => {
                 req.session.user = user;
 
                 res.locals.user = req.session.user;
-                res.render('../views/dashboard.ejs',{name: req.session.fname, email: req.session.email,pno: req.session.pno, address: req.session.address, pin: req.session.pin});
+                res.render('../views/dashboard.ejs',{name: req.session.user.fname, email: req.session.email,pno: req.session.user.pno, address: req.session.user.address, pin: req.session.user.pin,initial: req.session.user.fname[0]});
             }
         });
     }else{

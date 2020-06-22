@@ -1,4 +1,4 @@
-<div class="ps-section--features-product ps-section masonry-root pt-40 pb-80">
+<div class="ps-section--features-product ps-section masonry-root pt-10 pb-10">
     <div class="ps-container">
       <form action="/store/mobiles">
         <div class="ps-section__header mb-50" style="display: flex;">
@@ -6,28 +6,24 @@
           <button class="ps-btn" style="width: 150px; height: 50px; font-size: 15px;">View&nbsp;More<i class="ps-icon-next"></i></button>
         </div>
       </form>
-      <div class="ps-section__content pb-40">
-        <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
-          <div class="ps-masonry">
-            <div class="grid-sizer"></div>
-            <%for(let i = 0; i < 4; i++ ){ %>
-              <div class="grid-item kids">
-                <div class="grid-item__content-wrapper">
-                  <div class="ps-shoe mb-30">
-                    <div class="ps-shoe__thumbnail">
-                      <a class="ps-shoe__favorite" href="/addtowishlist/<%= proRecent[i].id %>"><i class="ps-icon-heart"></i></a><img src="../<%= proRecent[i].image %>" alt=" <%= proRecent[i].image %> "><a class="ps-shoe__overlay" href="product/<%= proRecent[i].id %>"></a>
-                    </div>
-                    <div class="ps-shoe__content">
-                      <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#"> <%= proRecent[i].name %> </a>
-                        <p class="ps-shoe__categories"><a href="#"><%= proRecent[i].class %></a>,<a href="#"> <%= proRecent[i].brand %></a></p><span class="ps-shoe__price">  &#8377;  <%= proRecent[i].price %> </span>
-                      </div>
-                    </div>
-                  </div>
+      <div class="ps-owl--colection owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
+        <%for(let i = 0; i < 4; i++ ){ %>
+          <div class="ps-shoes--carousel">
+            <div class="ps-shoe">
+              <div class="ps-shoe__thumbnail">
+                <a class="ps-shoe__favorite" href="/addtowishlist/<%= proRecent[i].id %>"><i class="ps-icon-heart"></i></a><img src="../<%= proRecent[i].image %>" alt=" <%= proRecent[i].image %> "><a class="ps-shoe__overlay" href="product/<%= proRecent[i].id %>"></a>
+              </div>
+              <div class="ps-shoe__content">
+                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#"> <%= proRecent[i].name %> </a>
+                  <p class="ps-shoe__categories"><a href="#"><%= proRecent[i].class %></a>,<a href="#"> <%= proRecent[i].brand %></a></p><span class="ps-shoe__price">&#8377;<%= proRecent[i].price %> </span>
                 </div>
               </div>
-           <% } %>
+            </div>
           </div>
-        </div>
+        <% } %>
       </div>
     </div>
 </div>
+
+
+  

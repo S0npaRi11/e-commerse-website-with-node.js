@@ -2490,8 +2490,8 @@ textarea.form-control {
       .ps-shoe .ps-shoe__categories > a:hover {
         color: #2AC37D; }
   .ps-shoe .ps-shoe__price {
-    display: inline-block;
-    position: absolute;
+    display: block;
+    /* position: absolute; */
     top: 5px;
     right: 10px;
     font-family: "Archivo Narrow", sans-serif;
@@ -6548,11 +6548,41 @@ html .bg--parallax {
   display: none;
 }
 
+.dashboard{
+  padding: 30px 0;
+}
+
+.dashboard-info-container{
+  padding: 30px;
+}
+
+.dashboard-name-container{
+  text-align: center;
+}
+
+/* .dashboard-user-initials::before{
+  width: 100px;
+  height: 100px;
+  position: relative;
+  background: red;
+} */
+
+.dashboard-user-initials{
+  font-size: 80px;
+  text-transform: capitalize;
+}
+
+
+
 @media (max-width: 740px){
   .centerAlign{
     margin: auto;
     width: 100%;
   }
+  /* .ps-shoe__price{
+    font-size: 18px !important;
+    display: block;
+  } */
 }
 
 
