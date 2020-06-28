@@ -105,7 +105,7 @@ router.get('/mobiles', (req,res) => {
                 console.log(err);
                 res.render('../views/500.ejs'); 
             }else{
-                res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
+                res.render('../views/store.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
             }
         })
     });
@@ -209,7 +209,7 @@ router.get('/laptops/apple', (req,res) => {
 //mobiles
 
 router.get('/mobiles/apple', (req,res) => {
-    inventory.find({class: 'mobile', brand:'  apple '}, (err,result) => {
+    inventory.find({$and:[{class: 'mobile', brand:'  apple '}]}, (err,result) => {
         if(err) {
             console.log(err);
             res.render('../views/500.ejs');

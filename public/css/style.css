@@ -4896,7 +4896,7 @@ textarea.form-control {
       max-width: 200px; } }
   @media (max-width: 991px) {
     .ps-search--header {
-      max-width: 200px; } }
+      max-width: 300px; } }
 
 .ps-contact #contact-map {
   margin-bottom: 80px;
@@ -6595,10 +6595,10 @@ html .bg--parallax {
     position: fixed;
     bottom: 0;
     /* padding: 10px; */
-    padding-top: 10px;
+    padding-top: 4px;
     z-index: 1000;
     text-align: center;
-    font-size: 12px;
+    font-size: 15px;
     color: #fff
   }
   
@@ -6609,10 +6609,15 @@ html .bg--parallax {
   }
   
   .mobileBottomNav > i {
-    font-size: 25px;
+    font-size: 30px;
     padding-top: 5px;
     padding-bottom: 5px;
-    font-weight: lighter
+    font-weight: lighter;
+    display: block;
+  }
+
+  .hideWhenMobile{
+    display: none;
   }
 
 }
