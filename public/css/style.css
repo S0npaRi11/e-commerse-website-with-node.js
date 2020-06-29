@@ -4889,6 +4889,22 @@ textarea.form-control {
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     transition: all 0.4s ease; }
+    .ps-search > button {
+      position: absolute;
+      top: 120px;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      right: 25px;
+      color: #000;
+      font-size: 15px;
+      border: none;
+      background-color: transparent;
+      -webkit-transition: all 0.4s ease;
+      -moz-transition: all 0.4s ease;
+      transition: all 0.4s ease; }
     .ps-search--header > button:hover {
       color: #2AC37D; }
   @media (max-width: 1440px) {
@@ -6572,7 +6588,9 @@ html .bg--parallax {
   text-transform: capitalize;
 }
 
-
+.displayWhenMobile{
+  display: none;
+}
 
 @media (max-width: 740px){
   .centerAlign{
@@ -6618,6 +6636,10 @@ html .bg--parallax {
 
   .hideWhenMobile{
     display: none;
+  }
+
+  .displayWhenMobile{
+    display: block;
   }
 
 }

@@ -4,7 +4,7 @@ const inventory = require('../models/Inventory');
 const router = express.Router();
 
 router.get('/search', (req,res) => {
-    res.render('../views/search.ejs')
+    res.render('../views/search.ejs',{searchResults: ['a']})
 })
 
 router.post('/search', (req,res) => {
