@@ -3,15 +3,18 @@ const mongoose = require('mongoose');
 const ordersScheema = mongoose.Schema({
     productId:{
         type: String,
-        requied: true
+        requied: true,
+        trim: true
     },
     productClass:{
         type:String,
-        requied: true
+        requied: true,
+        trim: true
     },
     productBrand:{
         type: String,
-        requied: true
+        requied: true,
+        trim: true
     },
     productPrice:{
         type: Number,
@@ -19,23 +22,28 @@ const ordersScheema = mongoose.Schema({
     },
     productName:{
         type: String,
-        requied: true
+        requied: true,
+        trim: true
     },
     userId:{
         type: String,
-        requied: true
+        requied: true,
+        trim: true
     },
     userEmail:{
         type: String,
-        requied: true
+        requied: true,
+        trim: true
     },
     userName:{
         type: String,
-        requied: true
+        requied: true,
+        trim: true
     },
     userAddress:{
         type: String,
-        requied: true
+        requied: true,
+        trim: true
     },
     orderDate:{
         type: Date,
@@ -44,6 +52,10 @@ const ordersScheema = mongoose.Schema({
     orderStatus:{
         type: String,
         default: 'ordered'
+    },
+    isReceiptPrinted:{
+        type: Boolean,
+        default: false
     }
 });
 

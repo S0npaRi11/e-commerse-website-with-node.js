@@ -1,5 +1,7 @@
 const express = require('express');
 const orders = require('../models/Orders');
+const printReceipt = require('./printReceipt');
+const linkedList = require('./linkedList');
 
 const router = express.Router();
 
@@ -30,5 +32,20 @@ router.get('/update/:id', (req,res) => {
         }
     });
 });
+
+router.get('/print/:id',(req,res) => {
+    printReceipt(req.params.id);
+});
+
+router.get('/print',(req,res) => {
+    orders.find({$and:[{orderStatus:'packed'},{isReceiptPrinted:false}]},(error,products) => {
+        if(error) console.log(error);
+        else{
+            products.forEach = (product) => {
+                printReceipt(product.id)
+            }
+        }
+    });
+})
 
 module.exports = router;

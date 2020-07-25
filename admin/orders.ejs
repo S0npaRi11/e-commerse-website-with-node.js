@@ -7,6 +7,7 @@
                 <button class="ps-btn">Add Product<i class="ps-icon-next"></i></button>
             </div>
         </form>
+        <a href="/orders/print" class="btn btn-small btn-primary"> Print All Receipts </a>
         <div class="ps-cart-listing ps-table--whishlist">
             <table class="table ps-cart__table">
                 <thead>
@@ -35,6 +36,7 @@
                             <td> <%= order.orderDate%> </td>
                             <td> <%= order.orderStatus %> </td>
                             <td> <a href="/orders/update/<%= order.id %>" class="btn btn-small btn-primary"> Update </a> </td>
+                            <td> <a href="/orders/print/<%= order.id %>" class="btn btn-small btn-primary"> Print </a> </td>
                         </tr>
                     <% }); %>
                 </tbody>

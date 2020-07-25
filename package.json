@@ -13,7 +13,8 @@
   "license": "ISC",
   "devDependencies": {
     "dotenv": "^8.2.0",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "puppeteer": "^5.2.1"
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
