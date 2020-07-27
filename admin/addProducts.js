@@ -9,18 +9,39 @@ const products = require('../models/Inventory');
 
 const router = express.Router();
 
+//setting storage engine of the multer
+
+const storage = multer.diskStorage({
+    destination: './public/uploads',
+    filename: (req,file,cb) => {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+//init upload
+
+const upload = multer({
+    storage: storage,
+
+}).single('image')
+
+
 router.get('/products', (req, res) => {
     res.render('../admin/addProdForm.ejs');
 });
 
 router.post('/products', (req,res) => {
+
+    let imgPath = req.file.path.substring(7);
+
     const newProduct = new products({
-        class: req.body.class.trim(),
-        brand: req.body.brand.trim(),
-        name: req.body.name.trim(),
-        description: req.body.description.trim(),
+        class: req.body.class,
+        brand: req.body.brand,
+        name: req.body.name,
+        description: req.body.description,
         price: req.body.price,
-        stock: req.body.stock.trim()
+        stock: req.body.stock,
+        image: imgPath
     });
 
     newProduct.save().then( (err) =>{

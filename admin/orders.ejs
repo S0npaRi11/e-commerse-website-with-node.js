@@ -12,6 +12,33 @@
             <table class="table ps-cart__table">
                 <thead>
                     <tr>
+                        <th> Total Orders </th>
+                        <th> Packed Orders </th>
+                        <th> Shipped Orders </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> <%= ordes.length %> </td>
+                        <td> <% function checkStatus(o){ %>
+                                <% let x = 0, y = 0 %>
+
+                                <% if(o.orderStatus == 'packed'){ %>
+                                    <%    x++; %>
+                                <% }else if(o.orDerStatus == 'shipped'){ %>
+                                    <% y++; %>
+                                <% } %>
+                            <% } %> 
+                            <% orders.every(checkStatus) %>
+                            <%= x %>
+                        </td>
+                        <td> <%= y %> </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table ps-cart__table">
+                <thead>
+                    <tr>
                         <th> Item </th>
                         <th>Order ID</th>
                         <th> Customer ID </th>

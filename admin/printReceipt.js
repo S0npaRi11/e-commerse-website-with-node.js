@@ -23,7 +23,7 @@ let printReceipt = async (product) => {
             bottom: "100px"
         },
         printBackground: true,
-        path: `${order.id}.pdf`
+        path: `receipts/${order.id}.pdf`
     }
     const browser = await puppeteer.launch({
         args: ['--no-sandbox'],
