@@ -6642,6 +6642,15 @@ html .bg--parallax {
     display: block;
   }
 
+  .changeFontWhenMobile {
+    font-size: 14px !important;
+  }
+
+  .owl-item{
+    height: 200px;
+  }
+  
+
 }
 
 .dashboard-user-initials::before{

@@ -13,11 +13,9 @@ function initialize(passport,getUserByEmail, getUserById,req){
 
     app.use(passport.initialize());
     const authenticateUser = (email,password,done) => {
-        console.log('entered authenticate user function');
         users.findOne({email: email}) 
             .then(user => {
                 if(!user){
-                    console.log('no user with that email');
                     return done(null,false,{message : 'no user with this email'});
                 }
 
@@ -27,7 +25,6 @@ function initialize(passport,getUserByEmail, getUserById,req){
                     if(isMatch){
                         return done(null, user);
                     }else{
-                        console.log('incorrect password')
                         return done(null,false,{message : 'incorrect password'});
                     }
                 })

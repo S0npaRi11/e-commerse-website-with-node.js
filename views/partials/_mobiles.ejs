@@ -3,7 +3,7 @@
       <!-- <form action="/store/mobiles" method="GET">  -->
         <div class="ps-section__header mb-50" style="display: flex;">
           <h3 class="ps-section__title" data-mask="mobiles">- mobiles</h3>
-          <a href="/store/mobiles" style="padding-top:40px;">View&nbsp;More<i class="ps-icon-next"></i></a>
+          <a href="/store/mobiles" style="padding-top:60px;">View&nbsp;More<i class="ps-icon-next"></i></a>
           <!-- <button class="ps-btn" style="width: 150px; height: 50px; font-size: 15px;">View&nbsp;More<i class="ps-icon-next"></i></button> -->
         </div>
       <!-- </form> -->
@@ -15,7 +15,7 @@
                 <a class="ps-shoe__favorite" href="/addtowishlist/<%= product[i].id %>"><i class="ps-icon-heart"></i></a><img src="../<%=product[i].image  %>" alt=" <%= product[i].image  %> "><a class="ps-shoe__overlay" href="product/<%= product[i].id %>"></a>
               </div>
               <div class="ps-shoe__content">
-                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#"> <%= product[i].name %> </a>
+                <div class="ps-shoe__detail"><a class="ps-shoe__name changeFontWhenMobile" href="#"> <%= product[i].name %> </a>
                   <p class="ps-shoe__categories"><a href="#"><%= product[i].class %></a>,<a href="#"> <%= product[i].brand %></a></p><span class="ps-shoe__price">  &#8377;  <%= product[i].price %> </span>
                 </div>
               </div>

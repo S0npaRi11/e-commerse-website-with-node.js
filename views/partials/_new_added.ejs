@@ -3,7 +3,7 @@
       <!-- <form action="/store/mobiles"> -->
         <div class="ps-section__header mb-50" style="display: flex;">
           <h3 class="ps-section__title" data-mask="new">- Recently Added</h3>
-          <a href="/store/mobiles" style="padding-top: 40px;">View&nbsp;More<i class="ps-icon-next"></i></a>
+          <a href="/store/mobiles" style="padding-top: 60px;">View&nbsp;More<i class="ps-icon-next"></i></a>
         </div>
       <!-- </form> -->
      
@@ -15,7 +15,7 @@
                 <a class="ps-shoe__favorite" href="/addtowishlist/<%= proRecent[i].id %>"><i class="ps-icon-heart"></i></a><img src="../<%= proRecent[i].image %>" alt=" <%= proRecent[i].image %> "><a class="ps-shoe__overlay" href="product/<%= proRecent[i].id %>"></a>
               </div>
               <div class="ps-shoe__content">
-                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#"> <%= proRecent[i].name %> </a>
+                <div class="ps-shoe__detail"><a class="ps-shoe__name changeFontWhenMobile" href="#"> <%= proRecent[i].name %> </a>
                   <p class="ps-shoe__categories"><a href="#"><%= proRecent[i].class %></a>,<a href="#"> <%= proRecent[i].brand %></a></p><span class="ps-shoe__price">&#8377;<%= proRecent[i].price %> </span>
                 </div>
               </div>

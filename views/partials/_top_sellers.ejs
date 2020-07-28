@@ -3,7 +3,7 @@
     <!-- <form action="/store/mobiles"> -->
       <div class="ps-section__header mb-50" style="display: flex;">
         <h3 class="ps-section__title" data-mask="POPULAR">- Top Sellers</h3>
-        <a href="/store/mobiles" style="padding-top: 40px;">View&nbsp;More<i class="ps-icon-next"></i></a>
+        <a href="/store/mobiles" style="padding-top: 60px;">View&nbsp;More<i class="ps-icon-next"></i></a>
       </div>
     <!-- </form> -->
     <div class="ps-owl--colection owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
@@ -14,7 +14,7 @@
               <a class="ps-shoe__favorite" href="/addtowishlist/<%= popular[i].id %>"><i class="ps-icon-heart"></i></a><img src="../<%= popular[i].image %>" alt=" <%= popular[i].image %> "><a class="ps-shoe__overlay" href="product/<%= popular[i].id %>"></a>
             </div>
             <div class="ps-shoe__content">
-              <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#"> <%= popular[i].name %> </a>
+              <div class="ps-shoe__detail"><a class="ps-shoe__name changeFontWhenMobile" href="#"> <%= popular[i].name %> </a>
                 <p class="ps-shoe__categories"><a href="#"><%= popular[i].class %></a>,<a href="#"> <%= popular[i].brand %></a></p><p> <span class="ps-shoe__price" style="display: block;">  &#8377;  <%= popular[i].price %> </span> </p>
               </div>
             </div>

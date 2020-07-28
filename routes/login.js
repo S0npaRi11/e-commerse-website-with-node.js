@@ -16,26 +16,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 
-app.use(function(req, res, next) {
-    res.locals.user = req.session.user;
-    next();
-});
-
-// function isLoggedIn(req, res, next) {
-//     // passport adds this to the request object
-//     if (req.isAuthenticated()) {
-//         req.session.email = req.body.email;
-//         return next();
-//     }
-//     res.redirect('/login');
-// }
-
 const router = express.Router();
 
 router.get('/login', (req,res) => {
     res.render('../views/login.ejs');
 });
-
 
 router.post('/login', (req,res) => {
 
@@ -54,7 +39,7 @@ router.post('/login', (req,res) => {
             }else{
                 return user;
             }
-        }), req
+        }),
     );
 
     passport.authenticate('local',{
@@ -62,22 +47,17 @@ router.post('/login', (req,res) => {
         failureRedirect: '/login',
         failureFlash: true
     })(req,res);
-    req.session.email = req.body.email;
 });
 
 
 router.get('/dashboard',(req, res) => {
-    // console.log(req.session.email);
-    if(req.session.email){
-        users.findOne({email: req.session.email}, (error,user) => {
+    if(req.session.passport != undefined){
+        users.findById(req.session.passport.user, (error,user) => {
             if(error){
                 console.log(error);
                 res.render('../views/500.ejs');
             }else{
-                req.session.user = user;
-
-                res.locals.user = req.session.user;
-                res.render('../views/dashboard.ejs',{name: req.session.user.fname, email: req.session.email,pno: req.session.user.pno, address: req.session.user.address, pin: req.session.user.pin,initial: req.session.user.fname[0],wishlist: req.session.user.wishlist, previousBuys: req.session.user.orders});
+                res.render('../views/dashboard.ejs',{name: user.fname, email: user.email,pno: user.pno, address: user.address, pin: user.pin,initial: user.fname[0],wishlist: user.wishlist, previousBuys: user.orders});
             }
         });
     }else{
@@ -86,14 +66,14 @@ router.get('/dashboard',(req, res) => {
 });
 
 router.get('/wishlist', (req, res) => {
-    if(req.session.email){
-        users.findOne({email: req.session.email}, (err,user) => {
+    if(req.session.passport != undefined){
+        users.findById(req.session.passport.user, (err,user) => {
             if(err){
                 console.log(err);
                 res.render('../views/500.ejs');
             } 
             else{
-                res.render('../views/wishlist.ejs',{wishlist: req.wishlist, user: user});
+                res.render('../views/wishlist.ejs',{wishlist: user.wishlist});
             }
         });
     }else{
@@ -102,8 +82,8 @@ router.get('/wishlist', (req, res) => {
 });
 
 router.get('/orders', (req, res) => {
-    if(req.session.email){
-        orders.find({userEmail: req.session.email}, (err,user) => {
+    if(req.session.passport != undefined){
+        orders.findById(req.session.passport.user, (err,user) => {
             if(err){
                 console.log(err);
                 res.render('../views/500.ejs');
@@ -118,7 +98,7 @@ router.get('/orders', (req, res) => {
 });
 
 router.post('/logout',(req,res) => {
-    if(req.session.email){
+    if(req.session.passport != undefined){
         req.logOut();
         req.session.destroy((err) =>{
             if(err){
@@ -126,7 +106,6 @@ router.post('/logout',(req,res) => {
                 res.render('../views/500.ejs');
             }
             else{
-                console.log("logout complete");
                 res.redirect('/login');
             }
         });
