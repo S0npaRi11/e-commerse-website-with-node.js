@@ -2400,7 +2400,10 @@ textarea.form-control {
     position: relative;
     z-index: 100; }
     .ps-shoe .ps-shoe__thumbnail img {
-      width: 100%; }
+      width: 235px; 
+      height: 180px;
+      object-fit: cover;
+    }
   .ps-shoe .ps-shoe__overlay {
     position: absolute;
     top: 0;
@@ -2535,15 +2538,15 @@ textarea.form-control {
       background-color: #2AC37D; }
   .ps-shoe .br-theme-fontawesome-stars .br-widget {
     margin-bottom: 0; }
-  .ps-shoe:hover:before {
+  /* .ps-shoe:hover:before {
     visibility: visible;
     opacity: 1;
     -webkit-transform: scale(1, 1);
     -moz-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
-    transform: scale(1, 1); }
-  .ps-shoe:hover .ps-shoe__thumbnail {
+    transform: scale(1, 1); } */
+  /* .ps-shoe:hover .ps-shoe__thumbnail {
     z-index: 10000; }
   .ps-shoe:hover .ps-shoe__content {
     padding-top: 100px;
@@ -2556,13 +2559,13 @@ textarea.form-control {
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
     -o-transform: translateY(0);
-    transform: translateY(0); }
+    transform: translateY(0); } */
   .ps-shoe:hover .ps-shoe__favorite {
     -webkit-transform: scale(1, 1);
     -moz-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
-    transform: scale(1, 1); }
+    transform: scale(1, 1); } 
   @media (max-width: 1199px) {
     .ps-shoe:before {
       display: none; } }
@@ -6592,6 +6595,18 @@ html .bg--parallax {
   display: none;
 }
 
+.heightWhenMobile{
+  height: 300px;
+}
+
+.owl-stage-outer{
+  height: 300px;
+}
+
+.viewNext{
+  padding-top: 60px;
+}
+
 @media (max-width: 740px){
   .centerAlign{
     margin: auto;
@@ -6646,17 +6661,35 @@ html .bg--parallax {
     font-size: 14px !important;
   }
 
+  .heightWhenMobile{
+    height: 200px !important;
+  }
+
+  .owl-stage-outer{
+    height: 200px !important;
+  }
+  
   .owl-item{
     height: 200px;
+  }
+
+  .ps-shoe .ps-shoe__thumbnail img {
+    width: 130px; 
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .viewNext{
+    padding-top: 45px;
   }
   
 
 }
 
-.dashboard-user-initials::before{
+/* .dashboard-user-initials::before{
   content: '';
   position: relative;
   width: 100px;
   height: 100px;
   background-color: red;
-}
+} */
