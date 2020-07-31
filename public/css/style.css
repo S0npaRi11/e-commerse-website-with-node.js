@@ -2506,8 +2506,8 @@ textarea.form-control {
       color: #bcbcbc; }
   .ps-shoe .ps-shoe__favorite {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0px;
+    right: -30px;
     display: block;
     width: 35px;
     height: 35px;

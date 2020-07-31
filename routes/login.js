@@ -18,6 +18,11 @@ app.use(methodOverride('_method'));
 
 const router = express.Router();
 
+app.use(function(req, res, next) {
+    res.locals.user = req.session.passport.user;
+    next();
+});
+
 router.get('/login', (req,res) => {
     res.render('../views/login.ejs');
 });
