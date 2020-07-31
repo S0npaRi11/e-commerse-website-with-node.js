@@ -2397,11 +2397,12 @@ textarea.form-control {
     -moz-transition: all 0.3s ease;
     transition: all 0.3s ease; }
   .ps-shoe .ps-shoe__thumbnail {
+    width: 100px;
     position: relative;
     z-index: 100; }
     .ps-shoe .ps-shoe__thumbnail img {
-      width: 235px; 
-      height: 180px;
+      width: 100px; 
+      height: 100px;
       object-fit: cover;
     }
   .ps-shoe .ps-shoe__overlay {
@@ -6683,6 +6684,16 @@ html .bg--parallax {
     padding-top: 45px;
   }
   
+  .ps-shoe__favorite{
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    transition: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+    transform: none !important;
+  }
 
 }
 

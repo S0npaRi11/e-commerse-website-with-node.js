@@ -16,7 +16,8 @@
                 </div>
                 <div class="col-xs-12">
                   <h2 class="ps-section__title" data-mask="wishlist">- Wishlisted Items</h2>
-                  <a href="#">View&nbsp;More<i class="ps-icon-next"></i></a>
+                  <a href="#">View&nbsp;More</a>
+                  <% if(wishlist.length != 0){ %>
                     <div class="ps-owl--colection owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
                       <% wishlist.forEach(item => { %>
                       <div class="ps-shoes--carousel">
@@ -31,28 +32,36 @@
                           </div>
                         </div>
                       </div>
-                    <% }) %>
+                  <% }) %>
                   </div>
+                  <%}else{ %>
+                    <p style="padding: 15px 0; font-size: 20px; text-align: center;"> Your wishlist is empty. </p>
+                 <% } %>
                 </div>
                 <div class="col-xs-12">
                     <h2 class="ps-section__title" data-mask="previous buys">- Previously Perchased items</h2>
-                    <a href="#">View&nbsp;More<i class="ps-icon-next"></i></a>
-                    <div class="ps-owl--colection owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
-                      <% previousBuys.forEach(item => { %>
-                      <div class="ps-shoes--carousel">
-                        <div class="ps-shoe">
-                          <div class="ps-shoe__thumbnail">
-                            <a class="ps-shoe__favorite" href="/addtowishlist/<%= item.id %>"><i class="ps-icon-heart"></i></a><img src="../../<%=item.image  %>" alt=" <%= item.image  %> "><a class="ps-shoe__overlay" href="product/<%= item.id %>"></a>
-                          </div>
-                          <div class="ps-shoe__content">
-                            <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#"> <%= item.name %> </a>
-                              <p class="ps-shoe__categories"><a href="#"><%= item.class %></a>,<a href="#"> <%= item.brand %></a></p><span class="ps-shoe__price">  &#8377;  <%= item.price %> </span>
+                    <a href="#">View&nbsp;More</a>
+                    <% if(previousBuys.length != 0){ %>
+                      <div class="ps-owl--colection owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                        <% previousBuys.forEach(item => { %>
+                        <div class="ps-shoes--carousel">
+                          <div class="ps-shoe">
+                            <div class="ps-shoe__thumbnail">
+                              <a class="ps-shoe__favorite" href="/addtowishlist/<%= item.id %>"><i class="ps-icon-heart"></i></a><img src="../../<%=item.image  %>" alt=" <%= item.image  %> "><a class="ps-shoe__overlay" href="product/<%= item.id %>"></a>
+                            </div>
+                            <div class="ps-shoe__content">
+                              <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#"> <%= item.name %> </a>
+                                <p class="ps-shoe__categories"><a href="#"><%= item.class %></a>,<a href="#"> <%= item.brand %></a></p><span class="ps-shoe__price">  &#8377;  <%= item.price %> </span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    <% }) %>
-                  </div>
+                      <% }) %>
+                    </div>
+                    <% }else{ %>
+                      <p style="padding: 15px 0; font-size: 20px; text-align: center;"> You haven't bought  anything yet.</p>
+                    <% } %>
+                    
                 </div>
             </div>
         </div>
