@@ -27,46 +27,46 @@ router.get('/',(req,res) => {
 // popular and recent routes for every class
 
 //dslrs
-router.get('/dslrs/recent', (req,res) => {
-    inventory.find({class: 'dslr'},null,{sort:{id: 1}}, (err,result) => {
-        if(err) {
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
-    });
-});
+// router.get('/dslrs/recent', (req,res) => {
+//     inventory.find({class: 'dslr'},null,{sort:{id: 1}}, (err,result) => {
+//         if(err) {
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
+//         else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+//     });
+// });
 
-router.get('/dslrs/popular', (req,res) => {
-    inventory.find({class: 'dslr'},null,{sort:{sells: -1}}, (err,result) => {
-        if(err) {
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
-    });
-});
+// router.get('/dslrs/popular', (req,res) => {
+//     inventory.find({class: 'dslr'},null,{sort:{sells: -1}}, (err,result) => {
+//         if(err) {
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
+//         else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+//     });
+// });
 // laptops
 
-router.get('/laptops/recent', (req,res) => {
-    inventory.find({class: 'laptop'},null,{sort:{id: 1}}, (err,result) => {
-        if(err) {
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
-    });
-});
+// router.get('/laptops/recent', (req,res) => {
+//     inventory.find({class: 'laptop'},null,{sort:{id: 1}}, (err,result) => {
+//         if(err) {
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
+//         else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+//     });
+// });
 
-router.get('/lpatops/popular', (req,res) => {
-    inventory.find({class: 'laptops'},null,{sort:{sells: -1}}, (err,result) => {
-        if(err) {
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
-    });
-});
+// router.get('/lpatops/popular', (req,res) => {
+//     inventory.find({class: 'laptops'},null,{sort:{sells: -1}}, (err,result) => {
+//         if(err) {
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
+//         else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+//     });
+// });
 
 // mobiles
 
@@ -111,120 +111,120 @@ router.get('/mobiles', (req,res) => {
     });
 });
 
-router.get('/laptops', (req,res) => {
-    inventory.find({class: 'laptop'}, (err,result) => {
-        if(err){
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
+// router.get('/laptops', (req,res) => {
+//     inventory.find({class: 'laptop'}, (err,result) => {
+//         if(err){
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
 
-        const a = result;
-        const b = a.sort().reverse();
-        inventory.find({class: 'mobile'},null,{sort:{sells: 1}}, (err,popular) => {
-            if(err){
-                console.log(err);
-                res.render('../views/500.ejs'); 
-            }else{
-                res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
-            }
-        })
-    });
-});
+//         const a = result;
+//         const b = a.sort().reverse();
+//         inventory.find({class: 'mobile'},null,{sort:{sells: 1}}, (err,popular) => {
+//             if(err){
+//                 console.log(err);
+//                 res.render('../views/500.ejs'); 
+//             }else{
+//                 res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
+//             }
+//         })
+//     });
+// });
 
-router.get('/dslrs', (req,res) => {
-    inventory.find({class: 'dslr'}, (err,result) => {
-        if(err){
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
+// router.get('/dslrs', (req,res) => {
+//     inventory.find({class: 'dslr'}, (err,result) => {
+//         if(err){
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
 
-        const a = result;
-        const b = a.sort().reverse();
-        inventory.find({class: 'mobile'},null,{sort:{sells: 1}}, (err,popular) => {
-            if(err){
-                console.log(err);
-                res.render('../views/500.ejs'); 
-            }else{
-                res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
-            }
-        })
-    });
-});
+//         const a = result;
+//         const b = a.sort().reverse();
+//         inventory.find({class: 'mobile'},null,{sort:{sells: 1}}, (err,popular) => {
+//             if(err){
+//                 console.log(err);
+//                 res.render('../views/500.ejs'); 
+//             }else{
+//                 res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
+//             }
+//         })
+//     });
+// });
 
 // catagory and brand wise display
 
 //dslrs
-router.get('/dslrs/cannon', (req,res) => {
-    inventory.find({class: 'dslr', brand:'  cannon '}, (err,result) => {
-        if(err) {
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
-    });
-});
+// router.get('/dslrs/cannon', (req,res) => {
+//     inventory.find({class: 'dslr', brand:'  cannon '}, (err,result) => {
+//         if(err) {
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
+//         else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+//     });
+// });
 
 //laptops
 
-router.get('/laptops/apple', (req,res) => {
-    inventory.find({class: 'laptop',brand:'  apple '}, (err,result) => {
-        if(err) {
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
-    });
-});
+// router.get('/laptops/apple', (req,res) => {
+//     inventory.find({class: 'laptop',brand:'  apple '}, (err,result) => {
+//         if(err) {
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
+//         else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+//     });
+// });
 
-router.get('/laptops/hp', (req,res) => {
-    inventory.find({class: 'laptop',brand:'  hp '}, (err,result) => {
-        if(err) {
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
-    });
-});
+// router.get('/laptops/hp', (req,res) => {
+//     inventory.find({class: 'laptop',brand:'  hp '}, (err,result) => {
+//         if(err) {
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
+//         else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+//     });
+// });
 
-router.get('/laptops/dell', (req,res) => {
-    inventory.find({class: 'laptop', brand:'  dell '}, (err,result) => {
-        if(err) {
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
-    });
-});
+// router.get('/laptops/dell', (req,res) => {
+//     inventory.find({class: 'laptop', brand:'  dell '}, (err,result) => {
+//         if(err) {
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
+//         else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+//     });
+// });
 
-router.get('/laptops/apple', (req,res) => {
-    inventory.find({class: 'laptop', brand:'  lenovo '}, (err,result) => {
-        if(err) {
-            console.log(err);
-            res.render('../views/500.ejs');
-        }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
-    });
-});
+// router.get('/laptops/apple', (req,res) => {
+//     inventory.find({class: 'laptop', brand:'  lenovo '}, (err,result) => {
+//         if(err) {
+//             console.log(err);
+//             res.render('../views/500.ejs');
+//         }
+//         else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+//     });
+// });
 
 //mobiles
 
 router.get('/mobiles/apple', (req,res) => {
-    inventory.find({$and:[{class: 'mobile', brand:'  apple '}]}, (err,result) => {
+    inventory.find({$and:[{class: 'mobile', brand:'apple'}]}, (err,result) => {
         if(err) {
             console.log(err);
             res.render('../views/500.ejs');
         }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result, product: 'mobile', brand: 'apple'});
     });
 });
 
 router.get('/mobiles/oneplus', (req,res) => {
-    inventory.find({class: 'mobile', brand:'  oneplus '}, (err,result) => {
+    inventory.find({class: 'mobile', brand:'oneplus'}, (err,result) => {
         if(err) {
             console.log(err);
             res.render('../views/500.ejs');
         }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result, product: 'mobile', brand: 'oneplus'});
     });
 });
 
@@ -234,7 +234,7 @@ router.get('/mobiles/samsung', (req,res) => {
             console.log(err);
             res.render('../views/500.ejs');
         }
-        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result});
+        else res.render('../views/storeCatagory.ejs', {id: req.id,class: req.class, brand: req.brand, name: req.name,price: req.price,inventories: result, product: 'mobile', brand: 'samsung'});
     });
 });
 

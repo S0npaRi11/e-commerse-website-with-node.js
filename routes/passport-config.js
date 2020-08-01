@@ -7,8 +7,6 @@ const express = require('express');
 
 const app = express();
 
-
-
 function initialize(passport,getUserByEmail, getUserById,req){
 
     app.use(passport.initialize());

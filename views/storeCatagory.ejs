@@ -2,46 +2,40 @@
 <%- include('./partials/_mobile_nav') %>
     <main class="ps-main">
         <div class="ps-section__header mb-50 container">
-            <h3 class="ps-section__title" data-mask="product">- brand</h3>
+            <h3 class="ps-section__title" data-mask="<%= product %>">- <%= brand %></h3>
         </div>
-        <div class="ps-section__content pt-20">
+        <div class="container">
+            <div class="ps-section__content pt-20">
             <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
                 <div class="ps-masonry">
-                    <% inventories.forEach(function (inventory) { %>
-                    <a href="/<%= inventory.id %>">
-                        <!-- <div class="ps-product__column">
-                            <div class="ps-shoe mb-30">
-                                <div class="ps-shoe__thumbnail">
-                                    <a class="ps-shoe__favorite" href="/addtowishlist/<%= inventory.id %>"><i class="../../ps-icon-heart"></i></a><img src="../../<%= inventory.image %>" alt="<%= inventory.image %> "><a class="ps-shoe__overlay" href="/product/<%= inventory.id %>"></a>
-                                </div>
-                                <div class="ps-shoe__content">
-                                    <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">    <%= inventory.name %>  </a>
-                                        <p class="ps-shoe__categories">  <%= inventory.brand %>  </p><span class="ps-shoe__price">
-                                            &#8377; <%= inventory.price %> </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="grid-sizer"></div>
-                        <div class="grid-item kids">
-                            <div class="grid-item__content-wrapper row">
-                                <div class="ps-shoe mb-10">
-                                    <div class="ps-shoe__thumbnail col-xs-4">
-                                        <a class="ps-shoe__favorite" href="/addtowishlist/<%= inventory.id %>"><i class="../../ps-icon-heart"></i></a><img src="../../<%= inventory.image %>" alt="<%= inventory.image %> "><a class="ps-shoe__overlay" href="/product/<%= inventory.id %>"></a>
-                                    </div>
-                                    <div class="ps-shoe__content col-xs-8" style="width: 160px; position: static; padding: 0;">
-                                        <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">    <%= inventory.name %>  </a>
-                                            <p class="ps-shoe__categories">  <%= inventory.brand %>  </p><span class="ps-shoe__price">
-                                                &#8377; <%= inventory.price %> </span>
+                    <% if(inventories.length != 0){ %>
+                        <% inventories.forEach(function (inventory) { %>
+                            <a href="/<%= inventory.id %>">
+                                <div class="grid-sizer"></div>
+                                <div class="grid-item kids">
+                                    <div class="grid-item__content-wrapper row">
+                                        <div class="ps-shoe mb-10">
+                                            <div class="ps-shoe__thumbnail col-xs-4">
+                                                <a class="ps-shoe__favorite" href="/addtowishlist/<%= inventory.id %>"><i class="../../../ps-icon-heart"></i></a><img src="../../<%= inventory.image %>" alt="<%= inventory.image %> "><a class="ps-shoe__overlay" href="/product/<%= inventory.id %>"></a>
+                                            </div>
+                                            <div class="ps-shoe__content col-xs-8" style="width: 160px; position: static; padding: 0;">
+                                                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">    <%= inventory.name %>  </a>
+                                                    <p class="ps-shoe__categories">  <%= inventory.brand %>  </p><span class="ps-shoe__price">
+                                                        &#8377; <%= inventory.price %> </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </a>
-                    <% }) %> 
+                            </a>
+                            <% }) %> 
+                    <% }else{ %>
+                        <p> No such product found. </p>
+                    <% } %>
+                    
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
