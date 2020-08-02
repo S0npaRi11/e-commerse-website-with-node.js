@@ -8,7 +8,7 @@ const email = require('./emailConfig');
 const router = express.Router();
 
 router.get('/updatepass', (req, res) => {
-   if(req.session.email){
+   if(req.session.passport != undefined){
         // put the password update request in UpdatePass collection
         let updateRequest = new updatePass({
             uName: req.session.user.fname,
@@ -66,7 +66,7 @@ router.post('/updatepass/:id/:time', (req,res) => {
 
                 const hashedPassword =  bcrypt.hash(req.body.password2, 10);
 
-                users.findOneAndUpdate({'email': req.session.email}, {'$set': {'password': hashedPassword}}).exec((err) => {
+                users.findByIdAndUpdate(req.session.passport.user, {'$set': {'password': hashedPassword}}).exec((err) => {
                     if(err){
                         console.log(err);
                         res.render('../views/500.ejs');
@@ -74,7 +74,6 @@ router.post('/updatepass/:id/:time', (req,res) => {
                         res.redirect('/dashboard');
                     }
                 });
-                console.log("password changed");
             }
         }
     });
@@ -85,13 +84,12 @@ router.post('/updatepass/:id/:time', (req,res) => {
 router.get('/updateaddress', (req, res) => res.render('../views/updateaddress.ejs'));
 
 router.post('/updateaddress', (req,res) => {
-    if(req.session.email){
-        users.findOneAndUpdate({'email': req.session.email}, {'$set': {'address': req.body.address, 'pin': req.body.pin}}).exec((err) => {
+    if(req.session.passport != undefined){
+        users.findByIdAndUpdate(req.session.passport.user, {'$set': {'address': req.body.address, 'pin': req.body.pin}}).exec((err) => {
             if(err){
                 console.log(err);
                 res.render('../views/500.ejs');
             }else{
-                // console.log('changed');
                 res.redirect('/dashboard');
             }
         }); 
@@ -102,22 +100,21 @@ router.post('/updateaddress', (req,res) => {
 
 router.get('/addtowishlist/:id', (req,res) => {
 
-    if(req.session.email){
-        let a =  inventories.findOne({_id: req.params.id}, (err,result) => {
+    if(req.session.passport != undefined){
+        let a;  
+        inventories.findOne({_id: req.params.id}, (err,result) => {
             if(err) {
-                // console.log(err);
                 res.render('../views/500.ejs');
             }
             else{
             a = result;
-            users.findOneAndUpdate({'email': req.session.email}, {'$push': {'wishlist': {'product_id': a._id, 'class': a.class, 'brand': a.brand, 'name': a.name, 'price': a.price}}}).exec((err) => {
+            users.findByIdAndUpdate(req.session.passport.user, {'$push': {'wishlist': {'product_id': a._id, 'class': a.class, 'brand': a.brand, 'name': a.name, 'price': a.price, 'image': a.image}}}).exec((err) => {
                 if(err) {
                     console.log(err);
                     res.render('../views/500.ejs');
                 }
                 else{
                     res.status(204).send().end();
-                    // res.redirect('/');
                 }
             });
             }
@@ -128,17 +125,16 @@ router.get('/addtowishlist/:id', (req,res) => {
 });
 
 router.get('/removefromwishlist/:id', (req,res) => {
-    if(req.session.email){
+    if(req.session.passport != undefined){
         inventories.findOne({_id: req.params.id}, (err,result) => {
             if(err) {
                 console.log(err);
                 res.render('../views/500.ejs');
             }else{
                 let a = result;
-                users.findOneAndUpdate({'email': req.session.email}, {'$pull': {'wishlist': {'product_id': a._id, 'class': a.class, 'brand': a.brand, 'name': a.name, 'price': a.price}}}).exec((err) => {
+                users.findByIdAndUpdate(req.session.passport.user, {'$pull': {'wishlist': {'product_id': a._id, 'class': a.class, 'brand': a.brand, 'name': a.name, 'price': a.price}}}).exec((err) => {
                     if(err) console.log(err);
                     else{
-                        // console.log('removed from wishlist');
                         res.redirect('/wishlist');
                     }
                 });

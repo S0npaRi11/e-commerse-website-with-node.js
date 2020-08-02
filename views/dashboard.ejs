@@ -16,14 +16,14 @@
                 </div>
                 <div class="col-xs-12">
                   <h2 class="ps-section__title" data-mask="wishlist">- Wishlisted Items</h2>
-                  <a href="#">View&nbsp;More</a>
+                  <a href="/wishlist">View&nbsp;More</a>
                   <% if(wishlist.length != 0){ %>
-                    <div class="ps-owl--colection owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                    <div class="ps-owl--colection owl-slider" data-owl-auto="false" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="false" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
                       <% wishlist.forEach(item => { %>
                       <div class="ps-shoes--carousel">
                         <div class="ps-shoe">
                           <div class="ps-shoe__thumbnail">
-                            <a class="ps-shoe__favorite" href="/addtowishlist/<%= item.id %>"><i class="ps-icon-heart"></i></a><img src="../../<%=item.image  %>" alt=" <%= item.image  %> "><a class="ps-shoe__overlay" href="product/<%= item.id %>"></a>
+                            <a class="ps-shoe__favorite" href="/addtowishlist/<%= item.product_id %>"><i class="ps-icon-heart"></i></a><img src="../../../<%= item.image %>" alt=" <%= item.image  %> "><a class="ps-shoe__overlay" href="product/<%= item.product_id %>"></a>
                           </div>
                           <div class="ps-shoe__content">
                             <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#"> <%= item.name %> </a>
@@ -40,9 +40,9 @@
                 </div>
                 <div class="col-xs-12">
                     <h2 class="ps-section__title" data-mask="previous buys">- Previously Perchased items</h2>
-                    <a href="#">View&nbsp;More</a>
+                    <a href="/orders">View&nbsp;More</a>
                     <% if(previousBuys.length != 0){ %>
-                      <div class="ps-owl--colection owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="4" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
+                      <div class="ps-owl--colection owl-slider" data-owl-auto="false" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="false" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
                         <% previousBuys.forEach(item => { %>
                         <div class="ps-shoes--carousel">
                           <div class="ps-shoe">

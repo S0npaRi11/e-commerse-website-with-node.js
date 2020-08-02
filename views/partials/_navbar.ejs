@@ -38,17 +38,18 @@
           <input class="form-control" type="text" placeholder="Search Product…" name="search">
           <button><i class="ps-icon-search"></i></button>
         </form>
-        <% if(user){ %>
-            <div class="ps-cart"><a class="ps-cart__toggle" href="/dashboard"><i class="fa fa-user"></i></a>
-        <% }%>
+        <!-- <% if(user){ %>
+            <div class="ps-cart"><a class="ps-cart__toggle" href="/dashboard"><i class="fa fa-user"></i></a> </div>
+        <% }%> -->
         <div class="menu-toggle"><span></span></div>
+      <!-- </div> -->
       </div>
       <div class="container displayWhenMobile searchToggle" id="searchBar" style="text-align: center; padding-top: 60px;">
         <form class="ps-search" action="/search" method="POST" style="padding-top: 25px; margin: 0 auto;">
             <input class="form-control" type="text" placeholder="Search Product…" name="search" >
             <button style=" top: 105px; right: 35px;"><i class="ps-icon-search" style="padding-top: 5px;"></i></button>
         </form>
-    </div>
+      </div>
     </div>
   </nav>
 </header>
