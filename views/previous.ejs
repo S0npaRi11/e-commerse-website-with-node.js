@@ -4,30 +4,6 @@
 
 <main class="ps-main">
     <div class="container">
-        <!-- <div class="ps-cart-listing ps-table--whishlist">
-            <table class="table ps-cart__table">
-                <thead>
-                    <tr>
-                    <th>All Products</th>
-                    <th>Price</th>
-                    <th>View</th>
-                    <th> Purchase Date </th>
-                    <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <% orders.forEach((item) => {  %>
-                        <tr>
-                            <td><a class="ps-product__preview" href="product-detail.html"><img class="mr-15" src="<%= item.image %>" alt=" <%= item.image %> "><%= item.productName %></a></td>
-                            <td> &#8377; <%= item.productPrice %></td>
-                            <td><a class="ps-product-link" href="/store/<%= item.productId %>">View Product</a></td>
-                            <td> <%= item.orderDate %> </td>
-                            <td> <%= item.orderStatus %> </td>
-                        </tr>
-                <% }); %>
-                </tbody>
-            </table>
-        </div> -->
         <div class="ps-section__content pt-20">
             <div class="masonry-wrapper" data-col-md="4" data-col-sm="1" data-col-xs="1" data-gap="30" data-radio="100%">
                 <div class="ps-masonry">
@@ -38,7 +14,6 @@
                                 <div class="grid-item__content-wrapper row">
                                     <div class="ps-shoe mb-10">
                                         <div class="ps-shoe__thumbnail col-xs-4">
-                                            <!-- <a class="ps-shoe__favorite" href="/removefromwishlist/<%= item.product_id %>"><i class="../../../ps-icon-heart"></i></a> -->
                                             <img src="../../<%= item.image %>" alt="<%= item.image %> "><a class="ps-shoe__overlay" href="/product/<%= item.product_id %>"></a>
                                         </div>
                                         <div class="ps-shoe__content col-xs-8" style="width: 160px; position: static; padding: 0;">

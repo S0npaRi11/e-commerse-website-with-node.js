@@ -8,6 +8,7 @@ const email = require('./emailConfig');
 const router = express.Router();
 
 router.get('/updatepass', (req, res) => {
+    res.locals.userLogedIn = req.session.passport.user;
    if(req.session.passport != undefined){
         // put the password update request in UpdatePass collection
         let updateRequest = new updatePass({
@@ -45,7 +46,6 @@ router.get('/updatepass', (req, res) => {
 });
 
 router.post('/updatepass/:id/:time', (req,res) => {
-
     // here, we will check ofr the upate password request in the collection by id and time and isUsed flag
     // if failed, render 404
     //else change the password and update isUsed flag to true
@@ -81,7 +81,8 @@ router.post('/updatepass/:id/:time', (req,res) => {
    
 });
 
-router.get('/updateaddress', (req, res) => res.render('../views/updateaddress.ejs'));
+router.get('/updateaddress', (req, res) => {
+    res.render('../views/updateaddress.ejs')});
 
 router.post('/updateaddress', (req,res) => {
     if(req.session.passport != undefined){

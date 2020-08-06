@@ -1,11 +1,6 @@
-if(process.env.NODE_ENV !== 'production'){
-    require('dotenv').config();
-}
-
 const express = require('express');
 const passport = require('passport');
 const flash = require('express-flash');
-const session = require('express-session');
 const users = require('../models/User');
 const initializePassport = require('./passport-config');
 const methodOverride = require('method-override');
@@ -18,13 +13,12 @@ app.use(methodOverride('_method'));
 
 const router = express.Router();
 
-app.use(function(req, res, next) {
-    res.locals.user = req.session.passport.user;
-    next();
-});
-
 router.get('/login', (req,res) => {
-    res.render('../views/login.ejs');
+    if(req.session.passport != undefined){
+        res.render('../views/dashboard.ejs',{error: 'User is already loged in. LogOut from current instance to login as a new user.'})
+    }else{
+        res.render('../views/login.ejs');
+    }
 });
 
 router.post('/login', (req,res) => {
@@ -56,13 +50,12 @@ router.post('/login', (req,res) => {
 
 
 router.get('/dashboard',(req, res) => {
-    if(req.session.passport != undefined){
+    if(req.session.passport.user !== undefined){
         users.findById(req.session.passport.user, (error,user) => {
             if(error){
                 console.log(error);
                 res.render('../views/500.ejs');
             }else{
-                // console.log(user);
                 res.render('../views/dashboard.ejs',{name: user.fname, email: user.email,pno: user.pno, address: user.address, pin: user.pin,initial: user.fname[0],wishlist: user.wishlist, previousBuys: user.orders});
             }
         });

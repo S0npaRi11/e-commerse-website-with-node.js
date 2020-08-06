@@ -6,7 +6,6 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const users = require('../models/User');
 const flash = require('express-flash');
-const session = require('express-session');
 const passport = require('passport');
 
 const app = express();
@@ -15,6 +14,7 @@ app.use(passport.session());
 app.use(flash());
 
 router.get('/register', (req,res) => {
+    res.locals.userLogedIn = req.session.passport.user;
     res.render('../views/register.ejs');
 });
 

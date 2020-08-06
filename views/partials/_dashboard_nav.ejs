@@ -9,8 +9,6 @@
         <ul class="main-menu menu">
           <li class="menu-item"><a href="/">Home</a>
           </li>
-          <!-- <li class="menu-item"><a href="/dashboard">Dashboard</a>
-          </li> -->
           <li class="menu-item menu-item-has-children dropdown"><a href="/apple">MOBILES</a>
             <ul class="sub-menu">
               <li class="menu-item"><a href="store/mobiles/apple">APPLE</a></li>
@@ -18,19 +16,6 @@
               <li class="menu-item"><a href="store/mobiles/oneplus">ONEPLUS</a></li>
             </ul>
           </li>
-          <!-- <li class="menu-item menu-item-has-children dropdown"><a href="/applelaptops">LAPTOPS</a>
-            <ul class="sub-menu">
-              <li class="menu-item"><a href="/applelaptop">APPLE</a></li>
-              <li class="menu-item"><a href="/hplaptop">HP</a></li>
-              <li class="menu-item"><a href="/delllaptop">DELL</a></li>
-              <li class="menu-item"><a href="/lenovolaptop">LENOVO</a></li>
-            </ul>
-          </li> -->
-          <!-- <li class="menu-item menu-item-has-children dropdown"><a href="/cannondslr">DSLR</a>
-            <ul class="sub-menu">
-              <li class="menu-item"><a href="/cannondslr">CANON</a></li>
-            </ul>
-          </li> -->
           <li class="menu-item menu-item-has-children dropdown"> <a href="#"> OPTIONS </a>
             <ul class="sub-menu">
              <li>
@@ -49,11 +34,14 @@
         </ul>
       </div>
       <div class="navigation__column right">
-        <div class="menu-toggle"><span></span></div>
-        <!-- <% if(user){ %>
+        <form class="ps-search--header hideWhenMobile" action="/search" method="POST">
+          <input class="form-control" type="text" placeholder="Search Product…" name="search">
+          <button><i class="ps-icon-search"></i></button>
+        </form>
+        <% if(user){ %>
           <div class="ps-cart"><a class="ps-cart__toggle" href="/dashboard"><i class="fa fa-user"></i></a> </div>
         <% }%>
-        -->
+        <div class="menu-toggle"><span></span></div>
       </div>
     </div>
     <div class="container displayWhenMobile searchToggle" id="searchBar" style="text-align: center; padding-top: 60px;">
