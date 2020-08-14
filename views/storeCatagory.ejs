@@ -16,10 +16,10 @@
                                     <div class="grid-item__content-wrapper row">
                                         <div class="ps-shoe mb-10">
                                             <div class="ps-shoe__thumbnail col-xs-4">
-                                                <a class="ps-shoe__favorite" href="/addtowishlist/<%= inventory.id %>"><i class="../../../ps-icon-heart"></i></a><img src="../../<%= inventory.image %>" alt="<%= inventory.image %> "><a class="ps-shoe__overlay" href="/product/<%= inventory.id %>"></a>
+                                                <a class="ps-shoe__favorite" href="/addtowishlist/<%= inventory.id %>"><i class="ps-icon-heart"></i></a><img src="../../<%= inventory.image %>" alt="<%= inventory.image %> "><a class="ps-shoe__overlay" href="/product/<%= inventory.id %>"></a>
                                             </div>
                                             <div class="ps-shoe__content col-xs-8" style="width: 160px; position: static; padding: 0;">
-                                                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="#">    <%= inventory.name %>  </a>
+                                                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="/product/<%= inventory.id %>">    <%= inventory.name %>  </a>
                                                     <p class="ps-shoe__categories">  <%= inventory.brand %>  </p><span class="ps-shoe__price">
                                                         &#8377; <%= inventory.price %> </span>
                                                 </div>
