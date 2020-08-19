@@ -3,7 +3,7 @@ const inventory = require('../models/Inventory');
 
 const router = express.Router()
 
-router.get('/product/:id', (req,res) => {
+router.get('/:id', (req,res) => {
     inventory.findById({_id: req.params.id}, (err,result) => {
         if(err) console.log(err);
         else{

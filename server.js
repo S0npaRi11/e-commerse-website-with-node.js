@@ -48,16 +48,44 @@ app.use(function (req, res, next) {
     next();
 });
 //all routes here
-app.use('/', require('./routes/index.js'));
-app.use('/about', require('./routes/about.js'));
-app.use('/contact', require('./routes/contact.js'));
-app.use('/', require('./routes/login.js'));
-app.use('/', require('./routes/users.js'));
-app.use('/store', require('./routes/store.js'));
-app.use('/', require('./routes/search.js'));
-app.use('/', require('./routes/prodDetails.js'));
-app.use('/', require('./routes/update.js'));
-app.use('/purchase', require('./routes/purchase.js'));
-app.use('*', require('./routes/404.js'));
+
+    // All the static routes here 
+    app.use('/', require('./routes/static.js'));
+
+    // All authentication related routes here
+    app.use('/users', require('./routes/auth.js'));
+
+    // All dashbosrd routes here
+    app.use('/dashboard', require('./routes/dashboard.js'));
+
+    // All store routes here
+    app.use('/store', require('./routes/store.js'));
+
+    // Product Details route here
+    app.use('/product', require('./routes/product.js'));
+
+    // Search route here
+    app.use('/search', require('./routes/search.js'));
+
+    // Purchase route here
+    app.use('/purchase', require('./routes/purchase.js'));
+
+    //404 route here
+    app.use('*', require('./routes/404.js'));
+
+//routes end
+
+
+// app.use('/', require('./routes/index.js'));
+// app.use('/about', require('./routes/about.js'));
+// app.use('/contact', require('./routes/contact.js'));
+// app.use('/', require('./routes/login.js'));
+// app.use('/', require('./routes/users.js'));
+// app.use('/store', require('./routes/store.js'));
+// app.use('/', require('./routes/search.js'));
+// app.use('/', require('./routes/prodDetails.js'));
+// app.use('/', require('./routes/update.js'));
+
+// app.use('*', require('./routes/404.js'));
 
 app.listen(process.env.PORT || 3000);

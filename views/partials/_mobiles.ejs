@@ -2,18 +2,18 @@
     <div class="ps-container">
         <div class="ps-section__header" style="display: flex;">
           <h3 class="ps-section__title" data-mask="mobiles">- mobiles</h3>
-          <a href="/store/mobiles" class="viewNext">View&nbsp;More</a>
+          <a href="/store/mobile" class="viewNext">View&nbsp;More</a>
         </div>
       <div class="ps-owl--colection owl-slider" data-owl-auto="false" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="false" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="4" data-owl-item-lg="5" data-owl-duration="1000" data-owl-mousedrag="on">
         <%for(let i = 0; i < 6; i++ ){ %>
           <div class="ps-shoes--carousel">
             <div class="ps-shoe">
               <div class="ps-shoe__thumbnail">
-                <a class="ps-shoe__favorite" href="/addtowishlist/<%= product[i].id %>"><i class="ps-icon-heart"></i></a><img src="../<%=product[i].image  %>" alt=" <%= product[i].image  %> "><a class="ps-shoe__overlay" href="product/<%= product[i].id %>"></a>
+                <a class="ps-shoe__favorite" href="/dashboard/wishlist/add/<%= product[i].id %>"><i class="ps-icon-heart"></i></a><img src="../<%=product[i].image  %>" alt=" <%= product[i].name%> "><a class="ps-shoe__overlay" href="/product/<%= product[i].id %>"></a>
               </div>
               <div class="ps-shoe__content">
-                <div class="ps-shoe__detail"><a class="ps-shoe__name changeFontWhenMobile" href="#"> <%= product[i].name %> </a>
-                  <p class="ps-shoe__categories"><a href="#"><%= product[i].class %></a>,<a href="#"> <%= product[i].brand %></a></p><span class="ps-shoe__price">  &#8377;  <%= product[i].price %> </span>
+                <div class="ps-shoe__detail"><a class="ps-shoe__name changeFontWhenMobile" href="/store/<%= product[i].id %>"> <%= product[i].name %> </a>
+                  <p class="ps-shoe__categories"><a href="/store/<%=product[i].class %>"><%= product[i].class %></a>,<a href="store/<%=product[i].class%>/<%=product[i].brand%>"> <%= product[i].brand %></a></p><span class="ps-shoe__price">  &#8377;  <%= product[i].price %> </span>
                 </div>
               </div>
             </div>

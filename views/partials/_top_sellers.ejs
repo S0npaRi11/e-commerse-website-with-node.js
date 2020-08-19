@@ -3,7 +3,7 @@
     <!-- <form action="/store/mobiles"> -->
       <div class="ps-section__header" style="display: flex;">
         <h3 class="ps-section__title" data-mask="POPULAR">- Top Sellers</h3>
-        <a href="/store/mobiles" class="viewNext">View&nbsp;More</a>
+        <a href="/store/mobile" class="viewNext">View&nbsp;More</a>
       </div>
     <!-- </form> -->
     <div class="ps-owl--colection owl-slider" data-owl-auto="false" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="false" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-duration="1000" data-owl-mousedrag="on">
@@ -11,11 +11,11 @@
         <div class="ps-shoes--carousel">
           <div class="ps-shoe">
             <div class="ps-shoe__thumbnail">
-              <a class="ps-shoe__favorite" href="/addtowishlist/<%= popular[i].id %>"><i class="ps-icon-heart"></i></a><img src="../<%= popular[i].image %>" alt=" <%= popular[i].image %> "><a class="ps-shoe__overlay" href="product/<%= popular[i].id %>"></a>
+              <a class="ps-shoe__favorite" href="/dashboard/wishlist/add/<%= popular[i].id %>"><i class="ps-icon-heart"></i></a><img src="../<%= popular[i].image %>" alt=" <%= popular[i].name %> "><a class="ps-shoe__overlay" href="/product/<%= popular[i].id %>"></a>
             </div>
             <div class="ps-shoe__content">
-              <div class="ps-shoe__detail"><a class="ps-shoe__name changeFontWhenMobile" href="#"> <%= popular[i].name %> </a>
-                <p class="ps-shoe__categories"><a href="#"><%= popular[i].class %></a>,<a href="#"> <%= popular[i].brand %></a></p><p> <span class="ps-shoe__price" style="display: block;">  &#8377;  <%= popular[i].price %> </span> </p>
+              <div class="ps-shoe__detail"><a class="ps-shoe__name changeFontWhenMobile" href="/store/<%= popular[i].id %>"> <%= popular[i].name %> </a>
+                <p class="ps-shoe__categories"><a href="/store/<%= popular[i].class %>"><%= popular[i].class %></a>,<a href="/store/<%= popular[i].class %>/<%= popular[i].brnad %>"> <%= popular[i].brand %></a></p><p> <span class="ps-shoe__price" style="display: block;">  &#8377;  <%= popular[i].price %> </span> </p>
               </div>
             </div>
           </div>

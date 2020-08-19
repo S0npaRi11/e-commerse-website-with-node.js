@@ -9,11 +9,11 @@
             <div class="col-lg-10 col-md-12 col-lg-offset-1">
               <div class="ps-product__thumbnail">
                 <div class="ps-product__image">
-                  <div class="item"><img class="zoom" src="../<%= inventories.image %>" alt="<%= inventories.image %>" data-zoom-image="images/shoe-detail/1.jpg"></div>
+                  <div class="item"><img class="zoom" src="../<%= inventories.image %>" alt="<%= inventories.name %>" data-zoom-image="../<%= inventories.image %>"></div>
                 </div>
               </div>
               <div class="ps-product__thumbnail--mobile">
-                <div class="ps-product__main-img"><img src="../<%= inventories.image %>" alt="<%= inventories.image %>"></div>
+                <div class="ps-product__main-img"><img src="../<%= inventories.image %>" alt="<%= inventories.name %>"></div>
               </div>
               <div class="ps-product__info"> 
                 <h1><%= inventories.name %></h1>
@@ -24,7 +24,7 @@
                   <p> <%=inventories.description %> </p>
                 </div>
                 <div class="ps-product__shopping"><a class="ps-btn mb-10" href="/purchase/<%=inventories.id%>">Purchase Now<i class="ps-icon-next"></i></a>
-                  <div class="ps-product__actions"><a class="mr-10" href="/addtowishlist/<%= inventories.id %>"><i class="ps-icon-heart"></i></a></div>
+                  <div class="ps-product__actions"><a class="mr-10" href="/dashboard/wishlist/add/<%= inventories.id %>"><i class="ps-icon-heart"></i></a></div>
                 </div>
               </div>
               <div class="clearfix"></div>

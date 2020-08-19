@@ -3,11 +3,11 @@ const inventory = require('../models/Inventory');
 
 const router = express.Router();
 
-router.get('/search', (req,res) => {
+router.get('/', (req,res) => {
     res.render('../views/search.ejs',{searchResults: []})
 })
 
-router.post('/search', (req,res) => {
+router.post('/', (req,res) => {
     const required = req.body.search.toLowerCase();
     inventory.find({$or:[{class: required}, {brand:required}, {name: required}]}, (err, products) => {
         if(err) console.log(err);
