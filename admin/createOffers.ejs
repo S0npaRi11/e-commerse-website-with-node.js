@@ -1,0 +1,61 @@
+<%- include('_navbar') %>
+
+<main class="ps-main">
+    <div class="ps-contact ps-section pb-80">
+        <div class="ps-container" style="margin: 0 auto;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="ps-section__title" data-mask="Add Offers">- Add Offers</h2>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div class="ps-section__header mb-50">
+                        <form class="ps-contact__form" action="/offers/add" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="form-group">
+                                      <label>Title <sub>*</sub></label>
+                                      <input class="form-control" type="text" placeholder="" name="title" id="title">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                    <div class="form-group"> <!-- Date input -->
+                                        <label>End On Date</label>
+                                        <input class="form-control" id="endOn" name="endOn" placeholder="MM/DD/YYY" type="text"/>
+                                      </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                    <div class="form-group mb-25">
+                                        <label>Description <sub>*</sub></label>
+                                        <textarea class="form-control" rows="6" name="description" id="description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                    <div class="form-group">
+                                        <label> Eligible Products <sub>*</sub></label>
+                                        <select name="products" id="products" multiple>
+                                            <option value="all Samsung"> All Samsung Products </option>
+                                            <option value="all Apple"> All Apple Products </option>
+                                            <option value="all oneplus"> All oneplus Products </option>
+                                            <!-- render all avilable products here, one by one -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                    <div class="form-group">
+                                        <label>Image <sub>*</sub></label>
+                                        <input class="form-control" type="file" placeholder="" name="image" id="image" value="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                    <div class="form-group">
+                                        <button class="ps-btn">Add Offer<i class="ps-icon-next"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

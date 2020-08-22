@@ -5,3 +5,11 @@
         </div>       
     </div>
 <% } %>
+
+<% if (message != '') { %>
+  <div class="header-services" style="text-align: center; padding-top: 15px; background-color: #d8ffe0; height: 100%;">
+      <div class="container">
+        <p class="ps-service"><strong>Message</strong>: <%= message %></p>
+      </div>       
+  </div>
+<% } %>

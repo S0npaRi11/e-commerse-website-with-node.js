@@ -44,6 +44,7 @@ app.use(passport.initialize());
 // app.use(passport.session());
 app.use(function (req, res, next) {
     res.locals.user = req.session.passport ? true : false;
+    res.locals.message = req.flash('message');
     res.locals.error = req.flash('error');
     next();
 });

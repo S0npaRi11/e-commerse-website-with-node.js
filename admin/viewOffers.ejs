@@ -1,0 +1,41 @@
+<%- include('_navbar') %>
+
+<div class="ps-contact ps-section pb-80">
+    <div class="ps-container" style="margin: 0 auto;">
+        <form class="ps-contact__form" action="/add/products" method="get">
+            <div class="form-group">
+                <button class="ps-btn">Add Product<i class="ps-icon-next"></i></button>
+            </div>
+        </form>
+        <div class="ps-cart-listing ps-table--whishlist">
+            <table class="table ps-cart__table">
+                <thead>
+                    <tr>
+                    <th> Title</th>
+                    <th> EndOn </th>
+                    <th> Link </th>
+                    <th> Products </th>
+                    <th> </th>
+                    <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% offers.forEach((offer) => {  %>
+                        <tr>
+                            <td><%= offer.title %></td>
+                            <td><%= offer.endOn %></td>
+                            <td><%= offer.link %></td>
+                            <td><% offer.products.forEach( pro => { %>
+                                <%= pro %>
+                            <% }) %></td>
+                            <td><a class="ps-product-link" href="<%= offer.id %>">Update</a></td>
+                            <td>
+                                <a href="/delete/<%= offer.id %>" class="btn btn-danger"> delete </a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

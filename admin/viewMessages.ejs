@@ -1,0 +1,32 @@
+<%- include('_navbar') %>
+
+<div class="ps-contact ps-section pb-80">
+    <div class="ps-container" style="margin: 0 auto;">
+        <form class="ps-contact__form" action="/add/products" method="get">
+            <div class="form-group">
+                <button class="ps-btn">Add Product<i class="ps-icon-next"></i></button>
+            </div>
+        </form>
+        <div class="ps-cart-listing ps-table--whishlist">
+            <table class="table ps-cart__table">
+                <thead>
+                    <tr>
+                    <th> Name</th>
+                    <th> Email </th>
+                    <th> Message </th>
+                    <th>  </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% messages.forEach((msg) => {  %>
+                        <tr>
+                            <td><%= msg.name %></td>
+                            <td><%= msg.email %></td>
+                            <td><%= msg.message %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

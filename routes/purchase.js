@@ -9,7 +9,7 @@ const email = require('./emailConfig');
 const router = express.Router();
 
 router.get('/:id', (req,res) => {
-    if(req.session.email){
+    if(req.session.passport){
         // creating an istance
         const instance = new razorpay({
             key_id: process.env.RAZORPAY_ID,

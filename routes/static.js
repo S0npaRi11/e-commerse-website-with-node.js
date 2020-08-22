@@ -5,6 +5,8 @@ This file contains all the static routes
     /
     /about
     /contact
+        get
+        post
     /terms
     /privacy-policy
     /404
@@ -14,9 +16,10 @@ This file contains all the static routes
 
 const express = require('express');
 const inventories = require('../models/Inventory');
+const messages = require('../models/Messages');
+const offers = require('../models/Offers');
 
 const router = express.Router();
-
 
 // route "/"
 router.get('/', (req, res) => {
@@ -34,7 +37,14 @@ router.get('/', (req, res) => {
                     console.log(err);
                     res.render('../views/500.ejs'); 
                 }else{
-                    res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular});
+                    offers.find({}, (err, results) => {
+                        if(err){
+                            console.log(err);
+                            res.render('../views/500.ejs'); 
+                        }else{
+                            res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular, offers: results});
+                        }
+                    })
                 }
             })
         }
@@ -45,9 +55,24 @@ router.get('/', (req, res) => {
 // route "/about"
 router.get('/about', (req, res) => res.render('../views/about.ejs'));
 
-
 // route "/contact"
-router.get('/contact', (req, res) => res.render('../views/contact.ejs'));
+    // get
+    router.get('/contact', (req, res) => res.render('../views/contact.ejs'));
+
+    // post
+    router.post('/contact', (req, res) => {
+        const message = new messages({
+            name: req.body.name,
+            email: req.body.email,
+            message: req.body.message
+        });
+
+        message.save().then(() => {
+            res.render('../views/about.ejs', {message:'Thank you for your message!!'});
+        }).catch(() => {
+            res.render('../views/about.ejs', {error:'Message could not be recorded.'});
+        })
+    });
 
 // routes "/terms"
 router.get('/terms', (req, res) => res.render('../views/terms-and-conditions.ejs'));

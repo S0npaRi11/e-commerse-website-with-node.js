@@ -29,5 +29,7 @@ app.use('/add', require('./admin/addProducts.js'));
 app.use('/', require('./admin/updateProducts.js'));
 app.use('/', require('./admin/deleteProduct.js'));
 app.use('/orders', require('./admin/orders.js'));
+app.use('/offers', require('./admin/offers.js'));
+app.use('/messages', require('./admin/messages.js'));
 
 app.listen(5000);
