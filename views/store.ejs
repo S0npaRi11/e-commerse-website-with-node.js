@@ -1,4 +1,8 @@
-<%- include('./partials/_navbar') %>
+<% if(user){ %>
+    <%- include('./partials/_dashboard_nav') %>
+<% }else{ %>
+    <%- include('./partials/_navbar') %>
+<% } %>
 
 <%- include('./partials/_mobile_nav') %>
 

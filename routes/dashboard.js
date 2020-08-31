@@ -438,7 +438,6 @@ router.get('/orders', (req, res) => {
 
 
 // route "/dashboard/wishlist/add/:id"
-
 router.get('/wishlist/add/:id', (req,res) => {
 
     if(req.session.passport != undefined){

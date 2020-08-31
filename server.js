@@ -46,6 +46,7 @@ app.use(function (req, res, next) {
     res.locals.user = req.session.passport ? true : false;
     res.locals.message = req.flash('message');
     res.locals.error = req.flash('error');
+    res.locals.cart = req.session.cart;
     next();
 });
 //all routes here
@@ -56,7 +57,7 @@ app.use(function (req, res, next) {
     // All authentication related routes here
     app.use('/users', require('./routes/auth.js'));
 
-    // All dashbosrd routes here
+    // All dashboard routes here
     app.use('/dashboard', require('./routes/dashboard.js'));
 
     // All store routes here
@@ -70,6 +71,12 @@ app.use(function (req, res, next) {
 
     // Purchase route here
     app.use('/purchase', require('./routes/purchase.js'));
+
+    // Cart route here
+    app.use('/cart', require('./routes/cart.js'));
+
+    // Offers route here
+    app.use('/offer', require('./routes/offer.js'));
 
     //404 route here
     app.use('*', require('./routes/404.js'));

@@ -1,19 +1,19 @@
 <div class="shadow-lg mobileBottomNav">
     <div class="container">
         <div class="row">
-            <div class="col-xs-4">
+            <div class="col-xs-3">
                 <a href="/">
                     <i class="fa fa-home" style="font-size: 30px; padding: 5px; display: block;"></i>
                     HOME 
                 </a>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-3">
                 <div id="searchButton">
                     <i class="fa fa-search" style="font-size: 30px; padding: 5px; display: block;"></i>
                     SERACH
                 </div>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-3">
                 <% if(user) { %>
                     <a href="/dashboard">
                         <i class="fa fa-user" style="font-size: 30px; padding: 5px; display: block;"></i>
@@ -25,7 +25,12 @@
                    LOGIN 
                 </a>
                <% }%>
-                
+            </div>
+            <div class="col-xs-3">
+                <a href="/cart">
+                    <i class="fa fa-shopping-cart" style="font-size: 30px; padding: 5px; display: block;"></i>
+                   CART
+                </a>
             </div>
         </div>
     </div>
