@@ -31,6 +31,7 @@ const router = express.Router();
         if(req.session.passport != undefined){
             res.render('../views/dashboard.ejs',{error: 'User is already loged in. LogOut from current instance to login as a new user.'})
         }else{
+            res.locals.site.pageTitle = 'Log In';
             res.render('../views/login.ejs');
         }
     });
@@ -85,7 +86,10 @@ router.post('/logout',(req,res) => {
 // route "register"
 
     //get
-    router.get('/register', (req,res) => res.render('../views/register.ejs'));
+    router.get('/register', (req,res) => {
+        res.locals.site.pageTitle = 'Register';
+        res.render('../views/register.ejs');
+    });
 
     //post
     router.post('/register', async (req,res) => {

@@ -12,6 +12,7 @@ router.post('/', (req,res) => {
     inventory.find({$or:[{class: required}, {brand:required}, {name: required}]}, (err, products) => {
         if(err) console.log(err);
         else{
+            res.locals.site.pageTitle = 'Search for ' + required;
             res.render('../views/search.ejs',{searchResults: products})
         }
 

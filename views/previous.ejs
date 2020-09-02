@@ -5,7 +5,7 @@
 <main class="ps-main">
     <div class="container">
         <div class="ps-section__content pt-20">
-            <div class="masonry-wrapper" data-col-md="4" data-col-sm="1" data-col-xs="1" data-gap="30" data-radio="100%">
+            <div class="masonry-wrapper" data-col-md="3" data-col-sm="1" data-col-xs="1" data-gap="30" data-radio="100%">
                 <div class="ps-masonry">
                     <% orders.forEach((item) => {  %>
                         <a href="/<%= item.id %>">
@@ -13,13 +13,16 @@
                             <div class="grid-item kids">
                                 <div class="grid-item__content-wrapper row">
                                     <div class="ps-shoe mb-10">
-                                        <div class="ps-shoe__thumbnail col-xs-4">
+                                        <div class="ps-shoe__thumbnail col-xs-5">
                                             <img src="../../<%= item.image %>" alt="<%= item.name %> "><a class="ps-shoe__overlay" href="/product/<%= item.product_id %>"></a>
                                         </div>
-                                        <div class="ps-shoe__content col-xs-8" style="width: 160px; position: static; padding: 0;">
-                                            <div class="ps-shoe__detail"><a class="ps-shoe__name" href="/product/<%= item.product_id %>">    <%= item.name %>  </a>
+                                        <div class="ps-shoe__content col-xs-7" style="width: 160px; position: static; padding: 0;">
+                                            <div class="ps-shoe__detail">
+                                                <a class="ps-shoe__name" href="/product/<%= item.product_id %>">    <%= item.name %>  </a>
                                                 <p class="ps-shoe__categories">  <%= item.brand %>  </p><span class="ps-shoe__price">
                                                     &#8377; <%= item.price %> </span>
+
+                                                    <p>Status: <%= item.orderStatus %></p>
                                             </div>
                                         </div>
                                     </div>

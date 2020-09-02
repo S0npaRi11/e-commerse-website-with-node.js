@@ -41,12 +41,19 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(flash());
 app.use(passport.initialize());
-// app.use(passport.session());
+
 app.use(function (req, res, next) {
     res.locals.user = req.session.passport ? true : false;
     res.locals.message = req.flash('message');
     res.locals.error = req.flash('error');
     res.locals.cart = req.session.cart;
+    res.locals.site = {
+        title: 'mobilebazar.com',
+        descprition: 'Buy used smartphones at an affordable price ',
+        logoNavbar: '../../images/4.png',
+        logoFooter: '../../images/5.png',
+        pageTitle : ''
+    }
     next();
 });
 //all routes here
@@ -82,18 +89,5 @@ app.use(function (req, res, next) {
     app.use('*', require('./routes/404.js'));
 
 //routes end
-
-
-// app.use('/', require('./routes/index.js'));
-// app.use('/about', require('./routes/about.js'));
-// app.use('/contact', require('./routes/contact.js'));
-// app.use('/', require('./routes/login.js'));
-// app.use('/', require('./routes/users.js'));
-// app.use('/store', require('./routes/store.js'));
-// app.use('/', require('./routes/search.js'));
-// app.use('/', require('./routes/prodDetails.js'));
-// app.use('/', require('./routes/update.js'));
-
-// app.use('*', require('./routes/404.js'));
 
 app.listen(process.env.PORT || 3000);

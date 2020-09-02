@@ -4,6 +4,7 @@ const inventories = require('../models/Inventory');
 const router = express.Router();
 
 router.get('/', (req,res) => {
+    res.locals.site.pageTitle = 'Cart';
     res.render('../views/cart.ejs');
 });
 

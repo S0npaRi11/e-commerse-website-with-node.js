@@ -12,11 +12,16 @@
           <div class="ps-shoes--carousel">
             <div class="ps-shoe">
               <div class="ps-shoe__thumbnail">
-                <a class="ps-shoe__favorite" href="/cart/add/<%=proRecent[i].id%>"><i class="ps-icon-heart"></i></a><img src="../<%= proRecent[i].image %>" alt=" <%= proRecent[i].name %> "><a class="ps-shoe__overlay" href="/product/<%= proRecent[i].id %>"></a>
+                <img src="../<%= proRecent[i].image %>" alt=" <%= proRecent[i].name %> "><a class="ps-shoe__overlay" href="/product/<%= proRecent[i].id %>"></a>
               </div>
               <div class="ps-shoe__content">
-                <div class="ps-shoe__detail"><a class="ps-shoe__name changeFontWhenMobile" href="/product/<%= proRecent[i].id %>"> <%= proRecent[i].name %> </a>
+                <div class="ps-shoe__detail">
+                  <a class="ps-shoe__name changeFontWhenMobile" href="/product/<%= proRecent[i].id %>"> <%= proRecent[i].name %> </a>
                   <p class="ps-shoe__categories"><a href="/store/<%= proRecent[i].class %>"><%= proRecent[i].class %></a>,<a href="/store/<%= proRecent[i].class %>/<%= proRecent[i].brand %>"> <%= proRecent[i].brand %></a></p><span class="ps-shoe__price">&#8377;<%= proRecent[i].price %> </span>
+                  <div class="row action-buttons">
+                    <div class="col-xs-6"><a class="btn btn-primary favorite-action" href="/dashboard/wishlist/add/<%=proRecent[i].id%>"><i class="fa fa-heart"></i></a></div>
+                    <div class="col-xs-6"><a class="btn btn-primary add-to-cart-action" href="/cart/add/<%=proRecent[i].id%>"><i class="fa fa-shopping-cart"></i></a></div>
+                  </div>
                 </div>
               </div>
             </div>

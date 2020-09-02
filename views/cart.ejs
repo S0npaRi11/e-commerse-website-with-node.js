@@ -12,58 +12,49 @@
             <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
                 <div class="ps-masonry">
                     <% let total = 0; %>
-                    <% cart.forEach((item) => {  %>
-                        <a href="/<%= item._id %>">
-                            <div class="grid-sizer"></div>
-                            <div class="grid-item kids">
-                                <div class="grid-item__content-wrapper row">
-                                    <div class="ps-shoe mb-10">
-                                        <div class="ps-shoe__thumbnail col-xs-4">
-                                            <a class="ps-shoe__favorite" href="/cart/remove/<%= item._id %>"><i class="../fa-times"></i></a><img src="../../<%= item.image %>" alt="<%= item.name %> "><a class="ps-shoe__overlay" href="/product/<%= item._id %>"></a>
-                                        </div>
-                                        <div class="ps-shoe__content col-xs-8" style="width: 160px; position: static; padding: 0;">
-                                            <div class="ps-shoe__detail"><a class="ps-shoe__name" href="/product/<%= item.product_id %>">    <%= item.name %>  </a>
-                                                <p class="ps-shoe__categories">  <%= item.brand %>  </p><span class="ps-shoe__price">
-                                                    &#8377; <%= item.price %> </span>
+                    <% if(cart.length != 0){ %>
+                        <% cart.forEach((item) => {  %>
+                            <a href="/<%= item._id %>">
+                                <div class="grid-sizer"></div>
+                                <div class="grid-item kids">
+                                    <div class="grid-item__content-wrapper row">
+                                        <div class="ps-shoe mb-10">
+                                            <div class="ps-shoe__thumbnail col-xs-4">
+                                                <a class="ps-shoe__favorite" href="/cart/remove/<%= item._id %>"><i class="../fa-times"></i></a><img src="../../<%= item.image %>" alt="<%= item.name %> "><a class="ps-shoe__overlay" href="/product/<%= item._id %>"></a>
+                                            </div>
+                                            <div class="ps-shoe__content col-xs-8" style="width: 160px; position: static; padding: 0;">
+                                                <div class="ps-shoe__detail"><a class="ps-shoe__name" href="/product/<%= item.product_id %>">    <%= item.name %>  </a>
+                                                    <p class="ps-shoe__categories">  <%= item.brand %>  </p><span class="ps-shoe__price">
+                                                        &#8377; <%= item.price %> </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-
-                        <% total += item.price; %> 
-                    <% }); %>
+                            </a>
+    
+                            <% total += item.price; %> 
+                        <% }); %>
+                    <% }else{ %>
+                        <p> No items added to the cart. </p>
+                    <% } %>
                 </div>
             </div>
         </div>
 
-        <div class="row pt-50">
-            <div class="col-sm-6">
-                <h3>Total Price: <span>&#8377; <%= total %> </span></h3>
-            </div>
-            <div class="col-sm-6">
-                <div class="ps-cart__total">
-                    <a class="ps-btn" href="/purchase">Process&nbsp;to&nbsp;checkout&nbsp;<i class="ps-icon-next"></i></a>
-                  </div>
-            </div>
-        </div>
-        <!-- <div class="ps-cart__actions">
-            <!-- <div class="ps-cart__promotion"> -->
-              <!-- <div class="form-group">
-                <div class="ps-form--icon"><i class="fa fa-angle-right"></i>
-                  <input class="form-control" type="text" placeholder="Promo Code">
+        <% if(cart.length != 0){ %>
+            <div class="row pt-50">
+                <div class="col-sm-6">
+                    <h3>Total Price: <span>&#8377; <%= total %> </span></h3>
                 </div>
-              </div> -->
-              <!-- <div class="form-group">
-                <button class="ps-btn ps-btn--gray">Continue Shopping</button>
-              </div> -->
-            <!-- </div> -->
-           
-        <!-- </div> --> 
-        <!-- </div> -->
-
-
+                <div class="col-sm-6">
+                    <div class="ps-cart__total">
+                        <a class="ps-btn" href="/purchase">Process&nbsp;to&nbsp;checkout&nbsp;<i class="ps-icon-next"></i></a>
+                      </div>
+                </div>
+            </div>
+    
+        <% } %>
     </div>
 </main>
 

@@ -42,6 +42,7 @@ router.get('/', (req, res) => {
                             console.log(err);
                             res.render('../views/500.ejs'); 
                         }else{
+                            res.locals.site.pageTitle = 'Welcome';
                             res.render('../views/index.ejs',{name: req.name, price: req.price, brand: req.brand, id: req.id, image:req.image, product: a, proRecent: b, popular: popular, offers: results});
                         }
                     })
@@ -53,11 +54,17 @@ router.get('/', (req, res) => {
 });
 
 // route "/about"
-router.get('/about', (req, res) => res.render('../views/about.ejs'));
+router.get('/about', (req, res) => {
+    res.locals.site.pageTitle = 'About Us';
+    res.render('../views/about.ejs');
+});
 
 // route "/contact"
     // get
-    router.get('/contact', (req, res) => res.render('../views/contact.ejs'));
+    router.get('/contact', (req, res) => {
+        res.locals.site.pageTitle = 'Contact Us';
+        res.render('../views/contact.ejs')
+});
 
     // post
     router.post('/contact', (req, res) => {
@@ -75,15 +82,27 @@ router.get('/about', (req, res) => res.render('../views/about.ejs'));
     });
 
 // routes "/terms"
-router.get('/terms', (req, res) => res.render('../views/terms-and-conditions.ejs'));
+router.get('/terms', (req, res) => {
+    res.locals.site.pageTitle = 'Terms nad Conditions';
+    res.render('../views/terms-and-conditions.ejs')
+});
 
 // routes "/privacy-policy"
-router.get('/privacy-policy', (req, res) => res.render('../views/privacy-policy.ejs'));
+router.get('/privacy-policy', (req, res) => {
+    res.locals.site.pageTitle = 'Privacy Policy';
+    res.render('../views/privacy-policy.ejs')
+});
 
 // route "/404"
-router.get('/404', (req, res) => res.render('../views/404.ejs'));
+router.get('/404', (req, res) => {
+    res.locals.site.pageTitle = '404! Page not found';
+    res.render('../views/404.ejs')
+});
 
 // route "/500"
-router.get('/500', (req, res) => res.render('../views/500.ejs'));
+router.get('/500', (req, res) => {
+    res.locals.site.pageTitle = '500! Connection Error';
+    res.render('../views/500.ejs')
+});
 
 module.exports = router;

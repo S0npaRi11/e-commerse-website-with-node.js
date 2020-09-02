@@ -33,6 +33,7 @@ router.get('/',(req, res) => {
                 // console.log(error);
                 res.render('../views/500.ejs');
             }else{
+                res.locals.site.pageTitle = 'Dashboard';
                 res.render('../views/dashboard.ejs',{name: user.fname, email: user.email,pno: user.pno, address: user.address, pin: user.pin,initial: user.fname[0],wishlist: user.wishlist, previousBuys: user.orders});
             }
         });
@@ -50,6 +51,7 @@ router.get('/wishlist', (req, res) => {
                 res.render('../views/500.ejs');
             } 
             else{
+                res.locals.site.pageTitle = 'Wishlist';
                 res.render('../views/wishlist.ejs',{user: user});
             }
         });
@@ -67,6 +69,7 @@ router.get('/orders', (req, res) => {
                 res.render('../views/500.ejs');
             }
             else{
+                res.locals.site.pageTitle = 'Previous Orders';
                 res.render('../views/previous.ejs',{orders: user});
             }
         });

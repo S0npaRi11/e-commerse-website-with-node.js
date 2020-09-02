@@ -13,7 +13,7 @@
 </div>
 <div class="container" style="margin-bottom: 30px;">
     <div class="ps-section__content pt-20" style="padding-bottom: 50px;">
-        <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
+        <div class="masonry-wrapper" data-col-md="3" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
             <div class="ps-masonry">
                 <% if(searchResults.length != 0){ %>
                 <% searchResults.forEach(result => { %>
@@ -21,15 +21,20 @@
                     <div class="grid-item kids">
                         <div class="grid-item__content-wrapper row">
                             <div class="ps-shoe mb-10">
-                                <div class="ps-shoe__thumbnail col-xs-4">
-                                    <a class="ps-shoe__favorite" href="/dashboard/wishlist/add/%<= result.id %>"><i class="ps-icon-heart"></i></a> 
+                                <div class="ps-shoe__thumbnail col-xs-5">
+                                    <!-- <a class="ps-shoe__favorite" href="/dashboard/wishlist/add/%<= result.id %>"><i class="ps-icon-heart"></i></a>  -->
                                     <img src="../<%= result.image %>" alt="<%= result.name %>">
                                     <a class="ps-shoe__overlay" href="/product/<%= result.id %>"></a>
                                 </div>
-                                <div class="ps-shoe__content col-xs-8" style="width: 160px; position: static; padding: 0;">
+                                <div class="ps-shoe__content col-xs-7" style="width: 160px; position: static; padding: 0;">
                                     <div class="ps-shoe__detail"><a class="ps-shoe__name" href="/product/<%=result.id %>"> <%= result.name %> </a>
                                         <p class="ps-shoe__categories"><a href="/store/<%= result.class %>"><%= result.class %></a>,<a href="/store/<%= result.class %>/<%= result.brand %>"> <%= result.brand %></a></p><span class="ps-shoe__price">  &#8377; <%= result.price %></span>
                                     </div>
+
+                                    <div class="row action-buttons">
+                                        <div class="col-xs-6"><a class="btn btn-primary favorite-action" href="/dashboard/wishlist/add/<%=result.id%>"><i class="fa fa-heart"></i></a></div>
+                                        <div class="col-xs-6"><a class="btn btn-primary add-to-cart-action" href="/cart/add/<%=result.id%>"><i class="fa fa-shopping-cart"></i></a></div>
+                                      </div>
                                 </div>
                             </div>
                         </div>

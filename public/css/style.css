@@ -2397,7 +2397,7 @@ textarea.form-control {
     -moz-transition: all 0.3s ease;
     transition: all 0.3s ease; }
   .ps-shoe .ps-shoe__thumbnail {
-    width: 100px;
+    /* width: 100px; */
     position: relative;
     z-index: 100; }
     .ps-shoe .ps-shoe__thumbnail img {
@@ -2416,15 +2416,16 @@ textarea.form-control {
     display: block;
     position: absolute;
     padding: 10px 0 0;
-    bottom: 0;
+    /* bottom: 0; */
     left: 0;
     z-index: 10;
     width: 100%;
     z-index: 1000;
     overflow: hidden;
-    -webkit-transition: all 0.4s ease;
+    /* -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
-    transition: all 0.4s ease; }
+    transition: all 0.4s ease; */
+   }
   .ps-shoe .ps-shoe__variants {
     position: absolute;
     top: 10px;
@@ -6635,6 +6636,39 @@ html .bg--parallax {
 
 .viewNext{
   padding-top: 60px;
+}
+
+.action-buttons{
+  padding: 15px 0;
+}
+
+.favorite-action{
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  background: #4d4d4d;
+  font-size: 20px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.favorite-action:hover{
+  background: #2AC37D;
+}
+
+.add-to-cart-action{
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  background: #4d4d4d;
+  font-size: 15px;
+  text-align: center;
+}
+
+.add-to-cart-action:hover{
+  background: #2AC37D;
 }
 
 @media (max-width: 740px){
