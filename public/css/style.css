@@ -6630,9 +6630,9 @@ html .bg--parallax {
   height: 300px;
 }
 
-.owl-stage-outer{
+/* .owl-stage-outer{
   height: 300px;
-}
+} */
 
 .viewNext{
   padding-top: 60px;
@@ -6728,13 +6728,13 @@ html .bg--parallax {
     height: 200px !important;
   }
 
-  .owl-stage-outer{
+  /* .owl-stage-outer{
     height: 200px !important;
-  }
+  } */
   
-  .owl-item{
+  /* .owl-item{
     height: 200px;
-  }
+  } */
 
   .ps-shoe .ps-shoe__thumbnail img {
     width: 130px; 

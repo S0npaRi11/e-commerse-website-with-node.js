@@ -12,7 +12,7 @@
             <div class="masonry-wrapper" data-col-md="4" data-col-sm="2" data-col-xs="1" data-gap="30" data-radio="100%">
                 <div class="ps-masonry">
                     <% let total = 0; %>
-                    <% if(cart.length != 0){ %>
+                    <% if(cart.length != 0 && cart != undefined){ %>
                         <% cart.forEach((item) => {  %>
                             <a href="/<%= item._id %>">
                                 <div class="grid-sizer"></div>
@@ -36,7 +36,9 @@
                             <% total += item.price; %> 
                         <% }); %>
                     <% }else{ %>
+                      <div class="container" style="text-align: center;">
                         <p> No items added to the cart. </p>
+                      </div>
                     <% } %>
                 </div>
             </div>

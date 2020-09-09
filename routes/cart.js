@@ -5,6 +5,9 @@ const router = express.Router();
 
 router.get('/', (req,res) => {
     res.locals.site.pageTitle = 'Cart';
+    if(req.session.cart === undefined){
+        req.session.cart = [];
+    }
     res.render('../views/cart.ejs');
 });
 
