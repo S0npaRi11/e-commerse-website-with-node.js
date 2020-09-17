@@ -1,30 +1,38 @@
 const mongoose = require('mongoose');
 
 const ordersScheema = mongoose.Schema({
-    productId:{
-        type: String,
-        requied: true,
-        trim: true
-    },
-    productClass:{
-        type:String,
-        requied: true,
-        trim: true
-    },
-    productBrand:{
-        type: String,
-        requied: true,
-        trim: true
-    },
-    productPrice:{
-        type: Number,
-        requied: true
-    },
-    productName:{
-        type: String,
-        requied: true,
-        trim: true
-    },
+    // productId:{
+    //     type: String,
+    //     requied: true,
+    //     trim: true
+    // },
+    // productClass:{
+    //     type:String,
+    //     requied: true,
+    //     trim: true
+    // },
+    // productBrand:{
+    //     type: String,
+    //     requied: true,
+    //     trim: true
+    // },
+    // productPrice:{
+    //     type: Number,
+    //     requied: true
+    // },
+    // productName:{
+    //     type: String,
+    //     requied: true,
+    //     trim: true
+    // },
+
+    products:[{
+        id: String,
+        class: String,
+        brand: String,
+        price: Number,
+        name: String
+    }],
     userId:{
         type: String,
         requied: true,

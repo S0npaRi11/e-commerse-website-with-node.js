@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const user  = require('../models/User');
 const order = require('../models/Orders');
 const email = require('./emailConfig');
+// const e = require('express');
 
 const router = express.Router();
 
@@ -51,14 +52,24 @@ router.post('/success/:id', (req,res)=> {
     let isSignatureValid = generatedSignature == req.body.razorpay_signature;
 
     if(isSignatureValid){
-       // if successfull, save the purchase to the user collection
+       // if successfull, save the purchase to the orders collection
        inventory.findById(req.params.id, (err, product) => {
-            newOeder = new order({
-                productId: product.id,
-                productClass: product.class,
-                productBrand: product.brand,
-                productPrice: product.price,
-                productName: product.name,
+
+        const purchasedItem = {
+            id: product.id,
+            class: product.class,
+            brand: product.brand,
+            price: product.price,
+            name: product.name
+        }
+
+            const newOeder = new order({
+                // productId: product.id,
+                // productClass: product.class,
+                // productBrand: product.brand,
+                // productPrice: product.price,
+                // productName: product.name,
+                products: purchasedItem,
                 userId: req.session.user.id,
                 userEmail: req.session.email,
                 userName: req.session.user.fname,
@@ -67,7 +78,7 @@ router.post('/success/:id', (req,res)=> {
                 razorpayPaymentId: req.body.razorpay_payment_id
             });
 
-            order.save().then( () => {
+            newOeder.save().then( () => {
                 user.findOne({email:req.session.email}, {$set:{orders:{class: product.class, brand: product.brand, price: product.price, orderID: req.body.razorpay_order_id, paymentID: req.body.razorpay_payment_id}}}, err => {
                     if(err) console.log(err);
                     else{
@@ -416,6 +427,46 @@ router.post('/success/:id', (req,res)=> {
             });
        });
     }
+});
+
+router.get('/multiple/:items', (req,res) => {
+    const purchasedItemsIdArray = req.params.items.slice('*');
+
+    const purchasedItemsAray = [];
+
+    purchasedItemsIdArray.forEach(item => {
+        inventory.findById(item, (error, product) => {
+            if(error) console.log(error);
+            else{
+
+                const productToPush = {
+                    id: product.id,
+                    class: product.class,
+                    brand: product.brand,
+                    price: product.price,
+                    name: product.name
+                }
+                purchasedItemsAray.push(productToPush);
+            }
+        })
+    });
+
+    const newOrder = new order({
+        products: purchasedItemsAray,
+        products: purchasedItem,
+        userId: req.session.user.id,
+        userEmail: req.session.email,
+        userName: req.session.user.fname,
+        userAddress: req.session.user.address,
+        razorpayOrderId: req.body.razorpay_order_id,
+        razorpayPaymentId: req.body.razorpay_payment_id
+    })
+
+    newOrder.save.then(() =>{
+        res.redirect('/dashboard');
+    }).catch(() => {
+        res.redirect('/');
+    })
 });
 
 
