@@ -118,12 +118,12 @@ router.post('/logout?_method=DELETE',(req,res) => {
     });
 
     // route "forgot"
-    router.get((req,res) => {
+    router.get('/forgot',(req,res) => {
         res.locals.site.pageTitle = 'Forgot Password';
         res.render('../views/forgotPass.ejs');
     }); 
 
-    router.post((req,res) => {
+    router.post('/forgot',(req,res) => {
         const  emailToMatch = req.body.email;
         const mobileNoToMatch = req.body.mobileNo;
 

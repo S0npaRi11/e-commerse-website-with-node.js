@@ -10,7 +10,7 @@ const email = require('./emailConfig');
 const router = express.Router();
 
 router.get('/:id', (req,res) => {
-    if(req.session.passport){
+    if(req.session.passport !== undefined){
         // creating an istance
         const instance = new razorpay({
             key_id: process.env.RAZORPAY_ID,
@@ -21,7 +21,7 @@ router.get('/:id', (req,res) => {
         inventory.findById(req.params.id, (err,product) => {
             if(err) console.log(err);
             else{
-                options.price = product.price * 100; 
+                options.amount = product.price * 100; 
                 options.currency = 'INR';
             }
 
@@ -432,7 +432,7 @@ router.post('/success/:id', (req,res)=> {
 router.get('/multiple/:items', (req,res) => {
     const purchasedItemsIdArray = req.params.items.slice('*');
 
-    const purchasedItemsAray = [];
+    const purchasedItemsArray = [];
 
     purchasedItemsIdArray.forEach(item => {
         inventory.findById(item, (error, product) => {
@@ -446,7 +446,7 @@ router.get('/multiple/:items', (req,res) => {
                     price: product.price,
                     name: product.name
                 }
-                purchasedItemsAray.push(productToPush);
+                purchasedItemsArray.push(productToPush);
             }
         })
     });
